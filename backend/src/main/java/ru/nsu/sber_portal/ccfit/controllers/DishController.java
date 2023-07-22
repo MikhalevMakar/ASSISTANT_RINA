@@ -22,9 +22,9 @@ public class DishController {
     private final DishService dishService;
 
     @ApiOperation("Dish description")
-    @GetMapping("/{title_rest}/dish/{id}")
-    public ResponseEntity<Dish> dishDescription(@PathVariable String title_rest, @PathVariable Long id) {
-        log.info("Title rest: ", title_rest);
+    @GetMapping("/{titleRest}/dish/{id}")
+    public ResponseEntity<Dish> dishDescription(@PathVariable String titleRest, @PathVariable Long id) {
+        log.info("Title rest: " + titleRest + " dish description " + id);
 
         return Optional.ofNullable(dishService.getDishById(id))
                        .map(ResponseEntity::ok)

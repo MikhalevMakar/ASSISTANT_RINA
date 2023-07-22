@@ -1,11 +1,8 @@
 package ru.nsu.sber_portal.ccfit.controllers;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-import ru.nsu.sber_portal.ccfit.exceptions.FindByIdException;
-import ru.nsu.sber_portal.ccfit.exceptions.FindRestByTitleException;
+import ru.nsu.sber_portal.ccfit.exceptions.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestControllerAdvice
@@ -27,6 +24,12 @@ public class ErrorRestController {
     public ResponseEntity<String> handleFailedFindByTitleException() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                              .body("Failed to find entity by text");
+    }
+
+    @ExceptionHandler(value = {ParseJsonException.class})
+    public ResponseEntity<String> handleFailedParseException() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body("Failed parse OrderDto");
     }
 }
 

@@ -13,8 +13,6 @@ Gsrc/main/java/ru/nsu/sber_portal/ccfit/repositories/DishRepository.java,3/8/38
 Lsrc/main/java/ru/nsu/sber_portal/ccfit/controllers/RestaurantController.java,2/b/2b87418d9761cb9c9a578b1aba011337fa1519d1
 v
 Fsrc/main/java/ru/nsu/sber_portal/ccfit/models/enums/SessionStatus.java,8/9/893d04665a259f94c69af71c9eea3be8bfcf8e5b
-v
-Fsrc/main/java/ru/nsu/sber_portal/ccfit/controllers/DishController.java,a/a/aa8425929b28be8515f89370d2ca179fa6f01b5e
 s
 Csrc/main/java/ru/nsu/sber_portal/ccfit/models/entity/PaidOrder.java,a/7/a7ea305fb64b10608e027a1e4397b5decf28903e
 v

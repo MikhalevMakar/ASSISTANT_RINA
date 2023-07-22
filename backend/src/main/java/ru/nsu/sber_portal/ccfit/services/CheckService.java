@@ -1,6 +1,5 @@
 package ru.nsu.sber_portal.ccfit.services;
 
-import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +20,6 @@ import static java.util.Optional.ofNullable;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Api(description = "Service for check")
 public class CheckService {
 
     private static final Long EMPTY_ORDER = 0L;
@@ -67,10 +65,10 @@ public class CheckService {
         log.info(" Id restaurant " + restaurant.getId());
 
         CheckTable checkTable = Optional.ofNullable(checkRepository
-                                                            .findByNumberTableAndRestaurantIdAndSessionStatus(numberTable,
-                                                                                                              restaurant.getId(),
-                                                                                                              SessionStatus.PLACED))
-                                         .orElseGet(CheckTable::new);
+                                     .findByNumberTableAndRestaurantIdAndSessionStatus(numberTable,
+                                                                                       restaurant.getId(),
+                                                                                       SessionStatus.PLACED))
+                                .orElseGet(CheckTable::new);
 
         CheckTableDto checkTableDto = CheckMapper.mapperToDto(checkTable);
 

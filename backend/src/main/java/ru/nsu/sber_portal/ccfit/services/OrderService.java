@@ -1,32 +1,23 @@
 package ru.nsu.sber_portal.ccfit.services;
 
-
-import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
-import ru.nsu.sber_portal.ccfit.models.dto.orderDto.ChangeOrderDto;
-import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderDto;
-import ru.nsu.sber_portal.ccfit.models.entity.CheckTable;
-import ru.nsu.sber_portal.ccfit.models.entity.Order;
-import ru.nsu.sber_portal.ccfit.models.entity.Restaurant;
+import ru.nsu.sber_portal.ccfit.models.dto.orderDto.*;
+import ru.nsu.sber_portal.ccfit.models.entity.*;
 import ru.nsu.sber_portal.ccfit.models.enums.SessionStatus;
 import ru.nsu.sber_portal.ccfit.models.mappers.OrderMapper;
-import ru.nsu.sber_portal.ccfit.repositories.CheckTableRepository;
-import ru.nsu.sber_portal.ccfit.repositories.OrderRepository;
-import ru.nsu.sber_portal.ccfit.repositories.RestaurantRepository;
+import ru.nsu.sber_portal.ccfit.repositories.*;
 
 import javax.transaction.Transactional;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.Optional.ofNullable;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Api(description = "Controller for order")
 public class OrderService {
 
     private static final Long EMPTY_ORDER = 0L;
@@ -111,7 +102,9 @@ public class OrderService {
 
         checkRepository.saveAndFlush(checkTable);
 
-        log.info("Order Id " + order.getId() + " price " + order.getPrice() + " weight " + order.getNumberTable());
+        log.info("Order Id " + order.getId() +
+                " price " + order.getPrice() +
+                " weight " + order.getNumberTable());
 
         restaurant.ifPresent(r -> r.addCheckTable(checkTable));
         restaurant.ifPresent(restRepository::save);

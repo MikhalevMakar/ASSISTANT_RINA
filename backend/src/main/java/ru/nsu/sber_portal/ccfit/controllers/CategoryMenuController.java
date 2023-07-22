@@ -20,9 +20,9 @@ public class CategoryMenuController {
     private final CategoryMenuService categoryMenuService;
 
     @ApiOperation("Category menu view")
-    @GetMapping("/{title_rest}/category/{id}")
-    public List<Dish> viewDishByCategory(@PathVariable String title_rest, @PathVariable Long id) {
-        log.info("View dish by category,  rest: ", title_rest);
+    @GetMapping("/{titleRest}/category/{id}")
+    public List<Dish> viewDishByCategory(@PathVariable String titleRest, @PathVariable Long id) {
+        log.info("View dish by category,  rest: " + titleRest);
         return categoryMenuService.getListDishByCategory(id);
     }
 }
