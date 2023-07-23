@@ -5,6 +5,10 @@ import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderDto;
 import ru.nsu.sber_portal.ccfit.models.entity.Order;
 
 public class OrderMapper {
+    private OrderMapper() {
+        throw new UnsupportedOperationException
+            ("Use getInstance() method to get the singleton instance.");
+    }
 
     @Contract("_ -> new")
     public static @NotNull Order mapToEntity(@NotNull OrderDto orderDto) {

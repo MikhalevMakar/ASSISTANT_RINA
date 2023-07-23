@@ -1,18 +1,14 @@
 package ru.nsu.sber_portal.ccfit.models.dto.orderDto;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
+@Data
 public class OrderPattern {
     @NotNull
     @Column(name = "dish_id")

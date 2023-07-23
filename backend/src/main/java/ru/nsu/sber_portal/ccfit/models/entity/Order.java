@@ -8,9 +8,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "order_table")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Order extends OrderPattern {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

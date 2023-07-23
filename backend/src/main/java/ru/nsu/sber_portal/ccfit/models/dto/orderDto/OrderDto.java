@@ -8,11 +8,10 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+public class OrderDto extends OrderPattern {
 
-public class OrderDto extends DeleteOrderDto {
-
-    @NotNull
     private Long price;
 
     private DishDto dishDto;
+
 }

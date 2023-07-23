@@ -33,7 +33,7 @@ public class CheckService {
     private final OrderRepository orderRepository;
 
     @Transactional
-    public void deleteOrder(@NotNull DeleteOrderDto deleteOrderDto) {
+    public void deleteOrder(@NotNull OrderPattern deleteOrderDto) {
         Order order = Optional.ofNullable(orderRepository.findByDishIdAndNumberTable(deleteOrderDto.getDishId(),
                 deleteOrderDto.getNumberTable()))
             .orElseThrow(() -> new NoSuchElementException ("Dish id " + deleteOrderDto.getDishId() + " wasn't found"));
