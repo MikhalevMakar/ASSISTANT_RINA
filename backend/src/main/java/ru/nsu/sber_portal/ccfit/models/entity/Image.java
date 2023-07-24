@@ -16,6 +16,7 @@ public class Image extends ContextModel {
     private Long id;
 
     @Column(name = "name")
+
     private String name;
 
     @Column(name = "size")
@@ -27,7 +28,7 @@ public class Image extends ContextModel {
     @Lob
     @Column(name = "bytes", columnDefinition = "bytea")
     private byte[] bytes;
-
+    
     @OneToOne(mappedBy = "image")
     private Dish dish;
 
