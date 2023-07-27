@@ -17,9 +17,8 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
-    @GetMapping("/{title}")
-    public List<CategoryMenu> restaurant(@PathVariable String title) {
-        log.info("Get menu restaurant " + title);
-        return restaurantService.getCategoryMenuByRest(title);
+    @GetMapping("/{title_rest}")
+    public List<CategoryMenu> restaurant(@PathVariable String title_rest) {
+        return restaurantService.getCategoryMenuByRest(title_rest);
     }
 }

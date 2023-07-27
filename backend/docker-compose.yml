@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  catalog-database:
+    container_name: catalog_database
+    image: postgres
+    restart: always
+    ports:
+      - "5430:5432"
+
+#    networks:
+#      - backend-network
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: makar
+      POSTGRES_DB: rina
+
+  catalog-backend:
+    container_name: catalog_backend
+    restart: always
+    image: backend_image
+#    networks:
+#      - backend-network
+    ports:
+      - "8080:8080"
+    environment:
+      POSTGRES_HOST: catalog-database
+    links:
+      - catalog-database
+
+#networks:
+#  backend-network:
+#    driver: bridge

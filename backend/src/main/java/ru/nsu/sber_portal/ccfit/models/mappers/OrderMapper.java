@@ -1,14 +1,13 @@
 package ru.nsu.sber_portal.ccfit.models.mappers;
 
+import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.*;
 import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderDto;
 import ru.nsu.sber_portal.ccfit.models.entity.Order;
+import ru.nsu.sber_portal.ccfit.repositories.DishRepository;
 
+@AllArgsConstructor
 public class OrderMapper {
-    private OrderMapper() {
-        throw new UnsupportedOperationException
-            ("Use getInstance() method to get the singleton instance.");
-    }
 
     @Contract("_ -> new")
     public static @NotNull Order mapToEntity(@NotNull OrderDto orderDto) {
@@ -18,12 +17,11 @@ public class OrderMapper {
         order.setCount(orderDto.getCount());
         order.setPrice(orderDto.getPrice());
         order.setDishId(orderDto.getDishId());
-
         return order;
     }
 
     public static @NotNull OrderDto mapToDto(@NotNull Order order) {
-        OrderDto orderDto = new OrderDto ();
+        OrderDto orderDto = new OrderDto();
         orderDto.setNumberTable(order.getNumberTable());
         orderDto.setCount(order.getCount());
         orderDto.setPrice(order.getPrice());

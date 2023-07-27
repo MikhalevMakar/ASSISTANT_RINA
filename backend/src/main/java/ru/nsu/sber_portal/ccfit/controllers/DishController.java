@@ -20,7 +20,9 @@ public class DishController {
     private final DishService dishService;
 
     @GetMapping("/{titleRest}/dish/{id}")
-    public ResponseEntity<Dish> dishDescription(@PathVariable String titleRest, @PathVariable Long id) {
+    public ResponseEntity<Dish> dishDescription(@PathVariable String titleRest,
+                                                @PathVariable Long id) {
+
         log.info("Title rest: " + titleRest + " dish description " + id);
 
         return Optional.ofNullable(dishService.getDishById(id))

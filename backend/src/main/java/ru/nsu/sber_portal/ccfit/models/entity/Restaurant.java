@@ -1,11 +1,11 @@
 package ru.nsu.sber_portal.ccfit.models.entity;
 
-import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import ru.nsu.sber_portal.ccfit.models.ContextModel;
 
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
@@ -31,10 +31,6 @@ public class Restaurant extends ContextModel {
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<CategoryMenu> categoryMenus;
-
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-    private List<Dish> menuItems;
 
     @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)

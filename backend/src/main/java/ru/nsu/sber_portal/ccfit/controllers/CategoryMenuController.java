@@ -16,6 +16,7 @@ import java.util.List;
 public class CategoryMenuController {
 
     private final CategoryMenuService categoryMenuService;
+
     @GetMapping("/{titleRest}/category/{id}")
     public List<Dish> viewDishByCategory(@PathVariable String titleRest, @PathVariable Long id) {
         log.info("View dish by category,  rest: " + titleRest);

@@ -16,7 +16,7 @@ public class DishDtoMapper {
         dish.setWeight(dishDto.getWeight());
         dish.setIsStopList(dishDto.isStopList());
         dish.setLinkImage(dishDto.getLinkImage());
-        //dish.setImage(dishDto.getImage());
+        dish.setImage(dishDto.getImage());
         return dish;
     }
 
@@ -26,7 +26,8 @@ public class DishDtoMapper {
                            dish.getPrice(),
                            dish.getWeight(),
                            dish.getIsStopList(),
-                           dish.getLinkImage());
+                           dish.getLinkImage(),
+                           dish.getImage());
     }
 }
 

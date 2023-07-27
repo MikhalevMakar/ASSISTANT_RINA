@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.sber_portal.ccfit.models.ContextModel;
-
 @Entity
 @Table(name = "category_menu")
 @Data
@@ -25,14 +24,15 @@ public class CategoryMenu extends ContextModel {
     private String title;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rest_id")
     private Restaurant restaurant;
 
     @Column(name = "link_image", length = MAX_LENGTH_TEXT)
     private String linkImage;
 
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.EAGER)
     private Image image;
 
     @Override

@@ -15,20 +15,22 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CheckTable { 
+public class CheckTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @OneToMany(mappedBy = "check", fetch = FetchType.EAGER)
-    private List<Order> orders =  new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "check", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
 
     @Column(name = "number_table")
     private Integer numberTable;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     @JoinColumn(name = "rest_id")
     private Restaurant restaurant;

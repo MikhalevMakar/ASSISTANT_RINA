@@ -6,7 +6,6 @@ import lombok.*;
 import ru.nsu.sber_portal.ccfit.models.ContextModel;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "dish")
@@ -44,20 +43,15 @@ public class Dish extends ContextModel {
     private String linkImage;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER)
-    List<MealSize> mealSize;
-
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rest_id")
     private Restaurant restaurant;
 
+
+    @JsonIgnore
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "image_id")
     private Image image;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    private Order order;
 
     @Column(name = "date_created")
     private LocalDateTime dateOfCreated;

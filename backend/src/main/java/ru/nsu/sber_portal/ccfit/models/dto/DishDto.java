@@ -18,5 +18,5 @@ public class DishDto {
 
      private String linkImage;
 
-     //private Image image;
+     private Image image;
 }

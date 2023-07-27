@@ -2,6 +2,7 @@ package ru.nsu.sber_portal.ccfit.models.dto;
 
 import lombok.*;
 import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderDto;
+import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderPattern;
 
 import java.util.*;
 
@@ -9,7 +10,8 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CheckTableDto {
-    private Set<OrderDto> listOrderDto = new HashSet<>();
+    private Set<OrderPattern> listOrderDto = new HashSet<>();
+
     private Integer numberTable;
 
     private Long restId;
@@ -19,4 +21,6 @@ public class CheckTableDto {
     public void addOrderDto(OrderDto orderDto) {
         listOrderDto.add(orderDto);
     }
+
+
 }

@@ -1,5 +1,6 @@
 package ru.nsu.sber_portal.ccfit.models.dto.orderDto;
 
+import jakarta.persistence.Column;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 

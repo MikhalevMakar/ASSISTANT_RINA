@@ -1,25 +1,29 @@
 package ru.nsu.sber_portal.ccfit.models.dto.orderDto;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import lombok.*;
-import org.jetbrains.annotations.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
 
+import java.util.Objects;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-@Data
+@Slf4j
 public class OrderPattern {
-    @NotNull
     @Column(name = "dish_id")
     protected Long dishId;
 
-    @NotNull
     @Column(name = "number_table")
     protected Integer numberTable;
 
-    @NotNull
     @Column(name = "count")
     protected Integer count;
+
 }
