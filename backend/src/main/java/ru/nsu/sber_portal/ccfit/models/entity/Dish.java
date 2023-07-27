@@ -47,12 +47,6 @@ public class Dish extends ContextModel {
     @JoinColumn(name = "rest_id")
     private Restaurant restaurant;
 
-
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "image_id")
-    private Image image;
-
     @Column(name = "date_created")
     private LocalDateTime dateOfCreated;
 

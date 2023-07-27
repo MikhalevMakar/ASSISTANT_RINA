@@ -8,19 +8,16 @@ services:
     ports:
       - "5430:5432"
 
-#    networks:
-#      - backend-network
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: makar
-      POSTGRES_DB: rina
+      POSTGRES_USER: ${RINA_PROJECT_DATABASE_USER_NAME}
+      POSTGRES_PASSWORD: ${RINA_PROJECT_DATABASE_PASSWORD}
+      POSTGRES_DB: ${RINA_PROJECT_DATABASE_NAME}
 
   catalog-backend:
     container_name: catalog_backend
     restart: always
     image: backend_image
-#    networks:
-#      - backend-network
+
     ports:
       - "8080:8080"
     environment:
@@ -28,6 +25,3 @@ services:
     links:
       - catalog-database
 
-#networks:
-#  backend-network:
-#    driver: bridge

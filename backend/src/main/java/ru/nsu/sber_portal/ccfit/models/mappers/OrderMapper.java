@@ -12,7 +12,6 @@ public class OrderMapper {
     @Contract("_ -> new")
     public static @NotNull Order mapToEntity(@NotNull OrderDto orderDto) {
         Order order =  new Order();
-
         order.setNumberTable(orderDto.getNumberTable());
         order.setCount(orderDto.getCount());
         order.setPrice(orderDto.getPrice());

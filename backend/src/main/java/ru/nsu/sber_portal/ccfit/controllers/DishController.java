@@ -29,6 +29,4 @@ public class DishController {
                        .map(ResponseEntity::ok)
                .orElse(ResponseEntity.notFound().build());
     }
-
-
 }

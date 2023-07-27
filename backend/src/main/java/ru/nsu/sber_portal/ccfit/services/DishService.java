@@ -19,39 +19,8 @@ public class DishService {
 
     private final DishRepository dishRepository;
 
-    private final ImageRepository imageRepository;
-
     public List<Dish> listDish(String title) {
         return (title != null) ? dishRepository.findByTitle(title) : dishRepository.findAll();
-    }
-
-    public void saveDish(@NotNull Dish dish, @NotNull MultipartFile file) {
-        Image image = toImageEntity(file);
-        Dish savedDish = dishRepository.save(dish);
-        image.setDish(savedDish);
-        Image savedImage = imageRepository.save(image);
-        savedDish.setImage(savedImage);
-
-        log.info("Saving new dish. Title: {}; Price: {}, Image {}", savedDish.getTitle(),
-                                                                    savedDish.getPrice(),
-                                                                    savedDish.getImage().getSize());
-
-        dishRepository.save(savedDish);
-    }
-
-    private @NotNull Image toImageEntity(@NotNull MultipartFile file) {
-        Image image = new Image();
-        image.setName(file.getName());
-        image.setName(file.getOriginalFilename());
-        image.setContentType(file.getContentType());
-        image.setSize(file.getSize());
-        try {
-            image.setBytes(file.getBytes());
-        } catch (IOException e) {
-            log.warn("IOException occurred", e);
-            throw new IllegalStateException(e);
-        }
-        return image;
     }
 
     public Dish getDishById(Long id) {

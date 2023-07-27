@@ -1,7 +1,6 @@
 package ru.nsu.sber_portal.ccfit.models.dto;
 
 import lombok.*;
-import ru.nsu.sber_portal.ccfit.models.entity.*;
 
 @AllArgsConstructor
 @Data
@@ -17,6 +16,4 @@ public class DishDto {
      private boolean isStopList;
 
      private String linkImage;
-
-     private Image image;
 }

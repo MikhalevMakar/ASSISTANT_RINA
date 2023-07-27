@@ -31,10 +31,6 @@ public class CategoryMenu extends ContextModel {
     @Column(name = "link_image", length = MAX_LENGTH_TEXT)
     private String linkImage;
 
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.EAGER)
-    private Image image;
-
     @Override
     public String toString() {
         return "Id: " + id + " name category menu " + title;
