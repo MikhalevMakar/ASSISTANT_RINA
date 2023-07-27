@@ -21,6 +21,7 @@ public class SecurityConfig {
                     configuration.addAllowedMethod (HttpMethod.GET);
                     configuration.addAllowedMethod (HttpMethod.DELETE);
                     configuration.addAllowedOriginPattern ("*");
+                    configuration.addAllowedHeader("*");
                     return configuration;
                 }
             ));
