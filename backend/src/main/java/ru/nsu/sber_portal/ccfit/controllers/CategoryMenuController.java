@@ -17,7 +17,7 @@ public class CategoryMenuController {
 
     private final CategoryMenuService categoryMenuService;
 
-    @GetMapping("/{titleRest}/category/{id}")
+    @GetMapping("/backend/{titleRest}/category/{id}")
     public List<Dish> viewDishByCategory(@PathVariable String titleRest, @PathVariable Long id) {
         log.info("View dish by category,  rest: " + titleRest);
         return categoryMenuService.getListDishByCategory(id);
