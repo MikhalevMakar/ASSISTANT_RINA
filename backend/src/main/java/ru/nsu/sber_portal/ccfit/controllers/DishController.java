@@ -19,7 +19,7 @@ public class DishController {
 
     private final DishService dishService;
 
-    @GetMapping("/{titleRest}/dish/{id}")
+    @GetMapping("/backend/{titleRest}/dish/{id}")
     public ResponseEntity<Dish> dishDescription(@PathVariable String titleRest,
                                                 @PathVariable Long id) {
 

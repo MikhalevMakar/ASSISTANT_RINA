@@ -23,7 +23,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping("/{titleRest}/order/change")
+    @PostMapping("/backend/{titleRest}/order/change")
     public HttpStatus changeOrder(@PathVariable String titleRest,
                                   @NotNull HttpEntity<String> requestEntity) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -41,7 +41,7 @@ public class OrderController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/{titleRest}/order")
+    @PostMapping("/backend/{titleRest}/order")
     public void createOrderToCheck(@PathVariable String titleRest, @NotNull HttpEntity<String> requestEntity) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
