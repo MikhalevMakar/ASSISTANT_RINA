@@ -1,7 +1,5 @@
 package ru.nsu.sber_portal.ccfit.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +21,6 @@ public class CategoryMenu extends ContextModel {
     @Column(name = "title", length = MAX_LENGTH_TEXT)
     private String title;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rest_id")
     private Restaurant restaurant;

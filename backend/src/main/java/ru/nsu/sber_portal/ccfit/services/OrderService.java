@@ -10,7 +10,6 @@ import ru.nsu.sber_portal.ccfit.models.mappers.OrderMapper;
 import ru.nsu.sber_portal.ccfit.repositories.*;
 
 import javax.transaction.Transactional;
-import java.util.*;
 
 import static java.util.Optional.ofNullable;
 
@@ -31,67 +30,60 @@ public class OrderService extends OrderCheckServiceUtility {
 
     @Transactional
     public void changeOrder(@NotNull ChangeOrderDto changeOrderDto) {
-
-        Order order = Optional.ofNullable(orderRepository.findByDishIdAndNumberTable(changeOrderDto.getDishId(),
-                                                                                     changeOrderDto.getNumberTable()))
-            .orElseThrow(() -> new NoSuchElementException("Dish id " + changeOrderDto.getDishId() + " wasn't found"));
+        log.info("Change order");
+        Order order = findOrder(changeOrderDto);
         order.setCount(changeOrderDto.getCount());
-       orderRepository.saveAndFlush(order);
+        orderRepository.saveAndFlush(order);
     }
 
-    private Order createOrderByCheckId(@NotNull Long checkId, @NotNull OrderDto orderDto) {
+    @Transactional
+    public Order createOrderByCheckId(@NotNull Long checkId, @NotNull OrderDto orderDto, CheckTable checkTable) {
         log.info("Create order by check id " + checkId);
 
         return ofNullable(orderRepository.findOrderByCheckIdAndDishId(checkId, orderDto.getDishId()))
             .map(order -> {
-                log.info("Check was found");
-                order.setNumberTable(orderDto.getNumberTable());
-                order.setDishId(orderDto.getDishId());
+                log.info("Order was found by dish id " + orderDto.getDishId());
                 order.setCount(order.getCount() + orderDto.getCount());
                 order.setPrice(order.getPrice() + orderDto.getPrice());
+                orderRepository.save(order);
                 return order;
-            }).orElseGet(() -> OrderMapper.mapToEntity(orderDto));
+            }).orElseGet(() -> {
+                log.info("Order wasn't found");
+
+                Order order = OrderMapper.mapToEntity(orderDto);
+                order.setCheck(checkTable);
+                checkTable.addNewOrder(order);
+                checkRepository.save(checkTable);
+                return order;
+            });
     }
 
-    private static void settingCheckTable(@NotNull CheckTable checkTable,
+    public void settingCheckTable(@NotNull CheckTable checkTable,
                                    @NotNull OrderDto orderDto,
                                    @NotNull Restaurant rest) {
 
+        log.info("Setting check table");
         checkTable.setCost(orderDto.getPrice() + checkTable.getCost());
         checkTable.setNumberTable(orderDto.getNumberTable());
         checkTable.setSessionStatus(SessionStatus.PLACED);
         checkTable.setRestaurant(rest);
     }
 
+    @Transactional
     public void addNewOrder(@NotNull OrderDto orderDto, String restName) {
         Restaurant restaurant = createRestaurant(restName);
-        log.info("Restaurant id" + restaurant.getId());
+        log.info("Restaurant id {}, Add new order", restaurant.getId());
 
-        log.info("Add new order by id");
-
-        CheckTable checkTable = createCheckTable(orderDto,
-                                                 restaurant,
-                                                 checkRepository);
+        CheckTable checkTable = createCheckTable(orderDto.getNumberTable(),
+                                                 restaurant);
 
         settingCheckTable(checkTable, orderDto, restaurant);
-        checkRepository.saveAndFlush(checkTable);
 
         log.info("Check table " + checkTable.getId());
 
-        Order order = createOrderByCheckId(checkTable.getId(), orderDto);
-
-        order.setCheck(checkTable);
-        orderRepository.saveAndFlush(order);
-
-        checkTable.addNewOrder(order);
-
-        checkRepository.saveAndFlush(checkTable);
-
+        Order order = createOrderByCheckId(checkTable.getId(), orderDto, checkTable);
         log.info("Order Id " + order.getId() +
-                " price " + order.getPrice() +
-                " weight " + order.getNumberTable());
-
-        restaurant.addCheckTable(checkTable);
-        restaurantRepository.save(restaurant);
+                 " price " + order.getPrice() +
+                 " weight " + order.getNumberTable());
     }
 }

@@ -1,14 +1,12 @@
 package ru.nsu.sber_portal.ccfit.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.sber_portal.ccfit.models.enums.SessionStatus;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "check_table")
@@ -22,16 +20,16 @@ public class CheckTable {
     @Column(name = "id")
     private Long id;
 
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "check", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Order> orders = new ArrayList<>();
-
     @Column(name = "number_table")
     private Integer numberTable;
 
+    @OneToMany(cascade = { CascadeType.REFRESH,
+                           CascadeType.DETACH,
+                           CascadeType.MERGE,
+                           CascadeType.PERSIST }, fetch = FetchType.EAGER, mappedBy = "check")
+    private List<Order> orders = new ArrayList<>();
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
     @JoinColumn(name = "rest_id")
     private Restaurant restaurant;
 

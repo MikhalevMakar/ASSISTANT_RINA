@@ -23,12 +23,13 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping("/backend/{titleRest}/order/change")
+    @PostMapping("/{titleRest}/order/change")
     public HttpStatus changeOrder(@PathVariable String titleRest,
                                   @NotNull HttpEntity<String> requestEntity) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            ChangeOrderDto orderDto = Optional.ofNullable(objectMapper.readValue(requestEntity.getBody(), ChangeOrderDto.class))
+            ChangeOrderDto orderDto = Optional.ofNullable(
+                objectMapper.readValue(requestEntity.getBody(), ChangeOrderDto.class))
                 .orElseThrow(() -> new ParseJsonException("Error parse OrderDto"));
 
             log.info("Change count dish " + orderDto.getDishId() + " in rest" + titleRest);
@@ -41,18 +42,25 @@ public class OrderController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/backend/{titleRest}/order")
+    @PostMapping("/{titleRest}/order")
     public void createOrderToCheck(@PathVariable String titleRest, @NotNull HttpEntity<String> requestEntity) {
         ObjectMapper objectMapper = new ObjectMapper();
+
+        log.info("Create order to check by info: " + requestEntity.getBody());
         try {
-            OrderDto orderDto = Optional.ofNullable(objectMapper.readValue(requestEntity.getBody(), OrderDto.class))
+            OrderDto orderDto = Optional.ofNullable(
+                objectMapper.readValue(requestEntity.getBody(), OrderDto.class))
                                     .orElseThrow(() -> new ParseJsonException("Error parse OrderDto"));
 
-            log.info("Cart post: " + orderDto);
-            log.info("Check: " + titleRest);
+            log.info("Cart post: " + orderDto + ", check: " + titleRest);
             orderService.addNewOrder(orderDto, titleRest);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
 }
+
+// TODO name добавлене в корзину
+// удаление, изменеение количества в корзине name
+// get dish info
+// get category info

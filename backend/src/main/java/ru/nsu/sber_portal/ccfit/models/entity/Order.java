@@ -1,6 +1,5 @@
 package ru.nsu.sber_portal.ccfit.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderPattern;
 
@@ -18,11 +17,12 @@ public class Order extends OrderPattern {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @ManyToOne(cascade = { CascadeType.REFRESH,
+                           CascadeType.DETACH,
+                           CascadeType.MERGE,
+                           CascadeType.PERSIST }, fetch = FetchType.EAGER)
     @JoinColumn(name = "check_table_id")
     private CheckTable check;
-
     @Column(name = "price")
     private Long price;
 

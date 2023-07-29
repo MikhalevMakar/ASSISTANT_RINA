@@ -1,6 +1,5 @@
 package ru.nsu.sber_portal.ccfit.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import ru.nsu.sber_portal.ccfit.models.ContextModel;
@@ -22,11 +21,6 @@ public class Dish extends ContextModel {
     @Column(name = "title")
     private String title;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    private CategoryMenu categoryMenu;
-
     @Column(name = "description", columnDefinition = "text")
     private String description;
 
@@ -42,10 +36,13 @@ public class Dish extends ContextModel {
     @Column(name = "link_image", length = MAX_LENGTH_TEXT)
     private String linkImage;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rest_id")
     private Restaurant restaurant;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private CategoryMenu categoryMenu;
 
     @Column(name = "date_created")
     private LocalDateTime dateOfCreated;

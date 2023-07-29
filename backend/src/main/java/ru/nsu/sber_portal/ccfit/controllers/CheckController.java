@@ -23,7 +23,7 @@ public class CheckController {
 
     private final CheckService checkService;
 
-    @GetMapping("/backend/{titleRest}/cart/{numberTable}")
+    @GetMapping("/{titleRest}/cart/{numberTable}")
     public CheckTableDto getCart(@PathVariable String titleRest, @PathVariable String numberTable) {
         log.info("Get cart by number table" + numberTable);
         return checkService.getCheck(titleRest,
@@ -31,7 +31,7 @@ public class CheckController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @DeleteMapping("/backend/{titleRest}/cart")
+    @DeleteMapping("/{titleRest}/cart")
     public HttpStatus deleteOrderToCheck(@PathVariable String titleRest,
                                          @NotNull HttpEntity<String> requestEntity) {
 
@@ -54,7 +54,7 @@ public class CheckController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/backend/{titleRest}/cart/payment")
+    @PostMapping("/{titleRest}/cart/payment")
     public HttpStatus shoppingCartPayment(@PathVariable String titleRest,
                                           @NotNull HttpEntity<String> requestEntity) {
 

@@ -2,6 +2,7 @@ package ru.nsu.sber_portal.ccfit.controllers;
 
 import lombok.extern.slf4j.*;
 import org.springframework.http.*;
+import ru.nsu.sber_portal.ccfit.models.dto.DishDto;
 import ru.nsu.sber_portal.ccfit.models.entity.*;
 import ru.nsu.sber_portal.ccfit.services.*;
 
@@ -19,9 +20,9 @@ public class DishController {
 
     private final DishService dishService;
 
-    @GetMapping("/backend/{titleRest}/dish/{id}")
-    public ResponseEntity<Dish> dishDescription(@PathVariable String titleRest,
-                                                @PathVariable Long id) {
+    @GetMapping("/{titleRest}/dish/{id}")
+    public ResponseEntity<DishDto> dishDescription(@PathVariable String titleRest,
+                                                   @PathVariable Long id) {
 
         log.info("Title rest: " + titleRest + " dish description " + id);
 

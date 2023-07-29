@@ -1,8 +1,9 @@
 package ru.nsu.sber_portal.ccfit.models.entity;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Table;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.*;
 import ru.nsu.sber_portal.ccfit.models.ContextModel;
 
 import jakarta.persistence.*;
@@ -28,12 +29,13 @@ public class Restaurant extends ContextModel {
     @Column(name = "count_table")
     private Integer countTable;
 
-    @Fetch(FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<CategoryMenu> categoryMenus;
 
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    @OneToMany(cascade = { CascadeType.REFRESH,
+                           CascadeType.DETACH,
+                           CascadeType.MERGE,
+                           CascadeType.PERSIST }, mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<CheckTable> checkTables;
 
     public void addCheckTable(CheckTable checkTable) {

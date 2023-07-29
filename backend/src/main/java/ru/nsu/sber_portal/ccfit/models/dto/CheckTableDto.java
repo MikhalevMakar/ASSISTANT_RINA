@@ -1,8 +1,7 @@
 package ru.nsu.sber_portal.ccfit.models.dto;
 
 import lombok.*;
-import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderDto;
-import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderPattern;
+import ru.nsu.sber_portal.ccfit.models.dto.orderDto.*;
 
 import java.util.*;
 
@@ -21,6 +20,4 @@ public class CheckTableDto {
     public void addOrderDto(OrderDto orderDto) {
         listOrderDto.add(orderDto);
     }
-
-
 }

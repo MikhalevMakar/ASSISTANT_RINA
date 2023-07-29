@@ -5,6 +5,9 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 public class DishDto {
+
+     private Long id;
+
      private String title;
 
      private String description;
