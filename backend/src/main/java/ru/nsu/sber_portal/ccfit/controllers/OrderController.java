@@ -20,32 +20,33 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class OrderController {
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     private final OrderService orderService;
 
     @PostMapping("/{titleRest}/order/change")
     public HttpStatus changeOrder(@PathVariable String titleRest,
                                   @NotNull HttpEntity<String> requestEntity) {
-        ObjectMapper objectMapper = new ObjectMapper();
+        ChangeOrderDto changeOrderDto;
         try {
-            ChangeOrderDto orderDto = Optional.ofNullable(
+            changeOrderDto = Optional.ofNullable(
                 objectMapper.readValue(requestEntity.getBody(), ChangeOrderDto.class))
                 .orElseThrow(() -> new ParseJsonException("Error parse OrderDto"));
-
-            log.info("Change count dish " + orderDto.getDishId() + " in rest" + titleRest);
-            orderService.changeOrder(orderDto);
-            return HttpStatus.CREATED;
         } catch (JsonProcessingException e) {
+            log.warn("During call method readValue " + e);
             e.printStackTrace();
+            return HttpStatus.BAD_REQUEST;
         }
-        return HttpStatus.BAD_REQUEST;
+
+        log.info("Change count dish " + changeOrderDto.getDishId() + " in rest" + titleRest);
+        orderService.changeOrder(changeOrderDto);
+        return HttpStatus.CREATED;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{titleRest}/order")
-    public void createOrderToCheck(@PathVariable String titleRest, @NotNull HttpEntity<String> requestEntity) {
-        ObjectMapper objectMapper = new ObjectMapper();
-
+    public HttpStatus createOrderToCheck(@PathVariable String titleRest,
+                                         @NotNull HttpEntity<String> requestEntity) {
         log.info("Create order to check by info: " + requestEntity.getBody());
         try {
             OrderDto orderDto = Optional.ofNullable(
@@ -54,13 +55,10 @@ public class OrderController {
 
             log.info("Cart post: " + orderDto + ", check: " + titleRest);
             orderService.addNewOrder(orderDto, titleRest);
+            return HttpStatus.CREATED;
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            log.warn("During call method readValue " + e);
         }
+        return HttpStatus.BAD_REQUEST;
     }
 }
-
-// TODO name добавлене в корзину
-// удаление, изменеение количества в корзине name
-// get dish info
-// get category info

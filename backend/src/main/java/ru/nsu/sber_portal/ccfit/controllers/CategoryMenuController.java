@@ -23,19 +23,15 @@ public class CategoryMenuController {
 
     private final CategoryMenuService categoryMenuService;
 
-    @GetMapping("/{titleRest}/category")
+    @PostMapping("/{titleRest}/category")
     public CategoryDishesDto viewDishByCategory(@PathVariable String titleRest,
                                                 @NotNull HttpEntity<String> requestEntity) throws JsonProcessingException {
-        log.info ("View dish by category,  body : " + requestEntity.getBody ());
+        log.info("View dish by category,  body : " + requestEntity.getBody());
 
-        DishFindDto dishFindDto = Optional.ofNullable (
-                objectMapper.readValue (requestEntity.getBody (), DishFindDto.class))
-            .orElseThrow (() -> new ParseJsonException ("Error parse OrderDto"));
+        DishFindDto dishFindDto = Optional.ofNullable(
+                objectMapper.readValue (requestEntity.getBody(), DishFindDto.class))
+            .orElseThrow(() -> new ParseJsonException("Error parse OrderDto"));
 
         return categoryMenuService.getListDishByCategory(titleRest, dishFindDto);
     }
 }
-
-// TODO application properties изменить catalog-database, пароль
-// dish category
-// добавить category name в Dish

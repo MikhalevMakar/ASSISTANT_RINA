@@ -32,7 +32,7 @@ public class CheckService extends OrderCheckServiceUtility {
     public CheckTableDto getCheck(String nameRest, Integer numberTable) {
         log.info("Method get check for restaurant " + nameRest);
 
-        Restaurant restaurant = createRestaurant(nameRest);
+        Restaurant restaurant = RestaurantService.createRestaurant(nameRest, restRepository);
 
         log.info(" Id restaurant " + restaurant.getId());
 
@@ -77,7 +77,7 @@ public class CheckService extends OrderCheckServiceUtility {
     public void payment(@NotNull String titleRest,
                         @NotNull CheckTableDto paymentCheckTableDto) {
 
-        Restaurant restaurant = createRestaurant(titleRest);
+        Restaurant restaurant = RestaurantService.createRestaurant(titleRest, restRepository);
         log.info("Method payment " + paymentCheckTableDto);
 
         paymentCheckTableDto.setRestId(restaurant.getId());

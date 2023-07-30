@@ -2,7 +2,6 @@ package ru.nsu.sber_portal.ccfit.services;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import ru.nsu.sber_portal.ccfit.exceptions.FindRestByTitleException;

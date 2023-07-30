@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class DishFindDto {
     private Long id;
+
     private String title;
 }

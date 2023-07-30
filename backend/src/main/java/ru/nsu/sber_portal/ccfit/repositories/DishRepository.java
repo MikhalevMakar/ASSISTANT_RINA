@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface DishRepository extends JpaRepository<Dish, Long> {
 
-    List<Dish> findByTitle(String titleRestaurant);
-
     List<Dish> findByCategoryMenuIdAndRestaurantId(Long categoryId , Long restId);
+
+    Dish findByRestaurantIdAndTitle(Long restId, String titleDish);
 }

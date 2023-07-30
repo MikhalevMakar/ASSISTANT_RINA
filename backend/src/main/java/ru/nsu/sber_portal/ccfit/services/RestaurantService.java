@@ -2,6 +2,7 @@ package ru.nsu.sber_portal.ccfit.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import ru.nsu.sber_portal.ccfit.exceptions.*;
 import ru.nsu.sber_portal.ccfit.models.dto.CategoryMenuDto;
@@ -21,6 +22,12 @@ import static java.util.Optional.ofNullable;
 public class RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
+
+    public static Restaurant createRestaurant(@NotNull String nameRest,
+                                              @NotNull RestaurantRepository restRepository) {
+        return restRepository.findByNameRestaurant(nameRest)
+            .orElseThrow(() -> new FindRestByTitleException("No such rest " + nameRest));
+    }
 
     private Optional<Restaurant> getRestByTitle(String title) {
         return ofNullable(restaurantRepository.findByNameRestaurant(title))

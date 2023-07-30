@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import ru.nsu.sber_portal.ccfit.models.dto.orderDto.*;
 import ru.nsu.sber_portal.ccfit.models.entity.*;
-import ru.nsu.sber_portal.ccfit.models.enums.SessionStatus;
 import ru.nsu.sber_portal.ccfit.models.mappers.OrderMapper;
 import ru.nsu.sber_portal.ccfit.repositories.*;
 
@@ -60,7 +59,7 @@ public class OrderService extends OrderCheckServiceUtility {
 
     @Transactional
     public void addNewOrder(@NotNull OrderDto orderDto, String restName) {
-        Restaurant restaurant = createRestaurant(restName);
+        Restaurant restaurant = RestaurantService.createRestaurant(restName, restRepository);
         log.info("Restaurant id {}, Add new order", restaurant.getId());
 
         CheckTable checkTable = createCheckTable(orderDto.getNumberTable(),

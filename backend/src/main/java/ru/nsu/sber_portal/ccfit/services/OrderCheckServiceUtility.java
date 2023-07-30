@@ -25,7 +25,7 @@ public class OrderCheckServiceUtility {
 
     protected final OrderRepository orderRepository;
 
-    protected final RestaurantRepository restaurantRepository;
+    protected final RestaurantRepository restRepository;
 
     protected final CheckTableRepository checkRepository;
 
@@ -47,12 +47,6 @@ public class OrderCheckServiceUtility {
                 restaurant.addCheckTable(checkTable);
                 return checkTable;
             });
-    }
-
-    @Transactional
-    public Restaurant createRestaurant(String nameRest){
-        return restaurantRepository.findByNameRestaurant(nameRest)
-            .orElseThrow(() -> new FindRestByTitleException("No such rest"));
     }
 
     @Transactional
