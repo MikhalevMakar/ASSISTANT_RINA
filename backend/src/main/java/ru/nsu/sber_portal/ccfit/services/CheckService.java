@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import ru.nsu.sber_portal.ccfit.models.dto.*;
-import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderDto;
 import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderPattern;
 import ru.nsu.sber_portal.ccfit.models.entity.*;
 import ru.nsu.sber_portal.ccfit.models.enums.*;
@@ -54,7 +53,6 @@ public class CheckService extends OrderCheckServiceUtility {
 
         log.info("Call check delete order");
 
-        log.info("Order count " + mainOrder.getCount() + " and " + payedOrderDto.getCount());
         mainOrder.setCount(mainOrder.getCount() - payedOrderDto.getCount());
 
         if(Objects.equals(mainOrder.getCount(), EMPTY_ORDER))

@@ -70,6 +70,7 @@ public class OrderCheckServiceUtility {
         orderRepository.delete(order);
     }
 
+
     @Transactional
     public void setListOrderFromEntityToDto(@NotNull CheckTable checkTable,
                                             @NotNull CheckTableDto checkTableDto) {
@@ -89,15 +90,14 @@ public class OrderCheckServiceUtility {
         }
     }
 
-    public void setListOrderFromDtoToEntity(@NotNull CheckTable checkTable,
-                                            @NotNull CheckTableDto checkTableDto) {
-        log.info("Set list order from dto to entity");
+    public void settingCheckTable(@NotNull CheckTable checkTable,
+                                  @NotNull OrderDto orderDto,
+                                  @NotNull Restaurant rest) {
 
-        for(OrderPattern orderDto  : checkTableDto.getListOrderDto()) {
-            Order order = new Order();
-            OrderMapper.setOrderPatternEntity(orderDto, order);
-            order.setCheck(checkTable);
-            checkTable.addNewOrder(order);
-        }
+        log.info("Setting check table");
+        checkTable.setCost(orderDto.getPrice() + checkTable.getCost());
+        checkTable.setNumberTable(orderDto.getNumberTable());
+        checkTable.setSessionStatus(SessionStatus.PLACED);
+        checkTable.setRestaurant(rest);
     }
 }

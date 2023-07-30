@@ -58,17 +58,6 @@ public class OrderService extends OrderCheckServiceUtility {
             });
     }
 
-    public void settingCheckTable(@NotNull CheckTable checkTable,
-                                   @NotNull OrderDto orderDto,
-                                   @NotNull Restaurant rest) {
-
-        log.info("Setting check table");
-        checkTable.setCost(orderDto.getPrice() + checkTable.getCost());
-        checkTable.setNumberTable(orderDto.getNumberTable());
-        checkTable.setSessionStatus(SessionStatus.PLACED);
-        checkTable.setRestaurant(rest);
-    }
-
     @Transactional
     public void addNewOrder(@NotNull OrderDto orderDto, String restName) {
         Restaurant restaurant = createRestaurant(restName);

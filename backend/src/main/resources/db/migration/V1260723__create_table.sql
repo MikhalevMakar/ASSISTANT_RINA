@@ -22,7 +22,7 @@ create sequence dish_seq start with 1 increment by 50;
 create sequence order_table_seq start with 1 increment by 50;
 create sequence restaurant_seq start with 1 increment by 50;
 
-create table restaurant(
+create table restaurant (
     count_table integer,
     id bigint not null,
     info_rest varchar(1000),
