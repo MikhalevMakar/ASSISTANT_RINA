@@ -24,5 +24,5 @@ public class CategoryMenuController {
     }
 }
 
-// application properties изменить catalog-database, пароль
+// TODO application properties изменить catalog-database, пароль
 // добавить category name в Dish
