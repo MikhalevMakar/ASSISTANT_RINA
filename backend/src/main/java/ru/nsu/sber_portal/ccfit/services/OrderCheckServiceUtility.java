@@ -70,7 +70,6 @@ public class OrderCheckServiceUtility {
         orderRepository.delete(order);
     }
 
-
     @Transactional
     public void setListOrderFromEntityToDto(@NotNull CheckTable checkTable,
                                             @NotNull CheckTableDto checkTableDto) {

@@ -2,6 +2,7 @@ package ru.nsu.sber_portal.ccfit.services;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import ru.nsu.sber_portal.ccfit.exceptions.FindRestByTitleException;
@@ -27,8 +28,9 @@ public class CategoryMenuService {
 
     private final RestaurantRepository restaurantRepository;
 
+
     @Transactional
-    public List<DishDto> getListDishByCategory(@NotNull String titleRest, @NotNull DishFindDto dishFindDto) {
+    public CategoryDishesDto getListDishByCategory(@NotNull String titleRest, @NotNull DishFindDto dishFindDto) {
         log.info("Get list by category_id {} and restaurant", dishFindDto.getId());
 
         Restaurant restaurant = restaurantRepository.findByNameRestaurant(titleRest)
@@ -39,12 +41,12 @@ public class CategoryMenuService {
             .orElseGet(() -> categoryMenuRepository.findByRestaurantIdAndTitle(restaurant.getId(),
                                                                                dishFindDto.getTitle()));
 
-        List<Dish> listDish = dishRepository
-                                .findByCategoryMenuIdAndRestaurantId(categoryMenu.getId(), restaurant.getId());
+        List<Dish> dishes = dishRepository
+                                .findByCategoryMenuIdAndRestaurantId(categoryMenu.getId(),
+                                                                     restaurant.getId());
 
-        log.info("List dish size " + listDish.size());
-        return listDish.stream()
-               .map(DishMapper::mapperToDto)
-               .toList();
+        log.info("List dish size " + dishes.size());
+        return new CategoryDishesDto(dishes.stream().map(DishMapper::mapperToDto).toList(),
+                                     categoryMenu.getTitle());
     }
 }
