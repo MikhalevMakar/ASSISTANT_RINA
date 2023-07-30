@@ -13,7 +13,7 @@ import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(produces = "application/json")
+@RequestMapping(value = "/backend", produces = "application/json")
 @RequiredArgsConstructor
 @Slf4j
 public class DishController {

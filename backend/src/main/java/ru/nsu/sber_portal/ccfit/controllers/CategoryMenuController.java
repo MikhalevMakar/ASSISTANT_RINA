@@ -9,7 +9,7 @@ import ru.nsu.sber_portal.ccfit.services.*;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping(produces = "application/json")
+@RequestMapping(value = "/backend", produces = "application/json")
 @RequiredArgsConstructor
 @Slf4j
 @RestController
@@ -24,6 +24,5 @@ public class CategoryMenuController {
     }
 }
 
-//TODO add @GetMapping(/backend)
 // application properties изменить catalog-database, пароль
 // добавить category name в Dish

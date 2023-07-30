@@ -20,8 +20,6 @@ s
 Csrc/test/java/ru/nsu/sber_portal/ccfit/models/entity/OrderTest.java,9/8/98ef9d6168a269155a73b1ad0d2d48039067eae8
 t
 Dsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/RestaurantDto.java,1/f/1fbf4e4d69c021e39ec63de1727204acace88fe3
-B
-docker-compose.yml,3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a
 ~
 Nsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/orderDto/ChangeOrderDto.java,8/5/85577d0e599e024fd24653edafa4cba8f02b8b05
 o
@@ -48,22 +46,14 @@ n
 >src/main/java/ru/nsu/sber_portal/ccfit/models/dto/DishDto.java,7/6/76872121e2dcee8d997945e2b6713fd29010f9cd
 v
 Fsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/CategoryMenuDto.java,2/e/2e730bde6ede11e77ba18a4d6947d329204443f8
-~
-Nsrc/main/java/ru/nsu/sber_portal/ccfit/controllers/CategoryMenuController.java,e/3/e3cfb9cd5228d20e144f60ebd1c55953d8f0f4b1
 x
 Hsrc/main/java/ru/nsu/sber_portal/ccfit/services/CategoryMenuService.java,5/e/5e3af44ddcda6385a29f3cb3378719761936e2c1
-v
-Fsrc/main/java/ru/nsu/sber_portal/ccfit/controllers/DishController.java,a/a/aa8425929b28be8515f89370d2ca179fa6f01b5e
 ~
 Nsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/orderDto/DeleteOrderDto.java,8/5/8533031ce1ae3c31ff140bfb137949a968727b4f
 p
 @src/main/java/ru/nsu/sber_portal/ccfit/services/DishService.java,1/3/134288baf2f301590b6cdd4344a7d378ab612edc
 |
 Lsrc/main/java/ru/nsu/sber_portal/ccfit/exceptions/DishNotFoundException.java,6/b/6b51905e9b2cbfe50477b095b4340f391b95ac28
-|
-Lsrc/main/java/ru/nsu/sber_portal/ccfit/controllers/RestaurantController.java,2/b/2b87418d9761cb9c9a578b1aba011337fa1519d1
-w
-Gsrc/main/java/ru/nsu/sber_portal/ccfit/controllers/CheckController.java,3/c/3c8d32113e101393aef7f0d2e21fe3edfe63f1bf
 t
 Dsrc/main/java/ru/nsu/sber_portal/ccfit/models/entity/Restaurant.java,8/1/81a1b3b13b17d170c80227bcf609504375ad21c0
 v
@@ -85,8 +75,6 @@ v
 Fsrc/main/java/ru/nsu/sber_portal/ccfit/models/mappers/OrderMapper.java,f/0/f0b30ce6be55cd0df3dddd8429522285b2a925e9
 t
 Dsrc/main/java/ru/nsu/sber_portal/ccfit/models/entity/CheckTable.java,2/c/2c607ccc2cc03be5fda432d8c3488f9a99a5b168
-w
-Gsrc/main/java/ru/nsu/sber_portal/ccfit/controllers/OrderController.java,8/a/8a7064474bbf118ef9e9ad3919b7e6e6a2734183
 o
 ?src/main/java/ru/nsu/sber_portal/ccfit/models/entity/Order.java,e/9/e9dcb831af658ffd1ef9c26191138359b99a911d
 u
@@ -99,5 +87,3 @@ q
 Asrc/main/java/ru/nsu/sber_portal/ccfit/services/OrderService.java,4/3/43249497fdab8fbbe77705e1321be083656b1984
 q
 Asrc/main/java/ru/nsu/sber_portal/ccfit/services/CheckService.java,3/f/3f725bc99a2ce663658418b34970b3c72e55ea9c
-4
-.env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
