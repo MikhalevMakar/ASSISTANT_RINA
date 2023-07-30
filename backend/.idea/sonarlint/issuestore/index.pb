@@ -11,8 +11,6 @@ n
 Msrc/main/java/ru/nsu/sber_portal/ccfit/repositories/RestaurantRepository.java,c/f/cf40666acb41284b5d80d601dc023c03dd68cb27
 s
 Csrc/test/java/ru/nsu/sber_portal/ccfit/models/entity/OrderTest.java,9/8/98ef9d6168a269155a73b1ad0d2d48039067eae8
-t
-Dsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/RestaurantDto.java,1/f/1fbf4e4d69c021e39ec63de1727204acace88fe3
 ~
 Nsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/orderDto/ChangeOrderDto.java,8/5/85577d0e599e024fd24653edafa4cba8f02b8b05
 o
@@ -25,20 +23,8 @@ Tsrc/main/java/ru/nsu/sber_portal/ccfit/exceptions/CategoryMenuNotFoundException
 Rsrc/main/java/ru/nsu/sber_portal/ccfit/exceptions/RestaurantNotFoundException.java,2/5/25606a92fdbe429a61866a6b7ae5ebeb4d225d32
 x
 Hsrc/main/java/ru/nsu/sber_portal/ccfit/exceptions/FindByIdException.java,6/1/61c3b6ba165bad86449dbce3d33f1b7854d2123a
-
-Osrc/main/java/ru/nsu/sber_portal/ccfit/repositories/CategoryMenuRepository.java,b/6/b663e5026c1dc1ca021114472d9a03c1bb981477
-w
-Gsrc/main/java/ru/nsu/sber_portal/ccfit/repositories/DishRepository.java,3/8/384654cd659d475ac5ada6a62bb60e19783f9c7b
 }
 Msrc/main/java/ru/nsu/sber_portal/ccfit/models/mappers/CategoryMenuMapper.java,5/f/5f5a229399595835b1323f7d6351a1838f37944d
-{
-Ksrc/main/java/ru/nsu/sber_portal/ccfit/controllers/ErrorRestController.java,7/2/72d44436d096e3dccae27565b1a1332f62379bda
-v
-Fsrc/main/java/ru/nsu/sber_portal/ccfit/models/entity/CategoryMenu.java,a/1/a14857b652b5525245d714685debde655eb22354
-n
->src/main/java/ru/nsu/sber_portal/ccfit/models/dto/DishDto.java,7/6/76872121e2dcee8d997945e2b6713fd29010f9cd
-x
-Hsrc/main/java/ru/nsu/sber_portal/ccfit/services/CategoryMenuService.java,5/e/5e3af44ddcda6385a29f3cb3378719761936e2c1
 ~
 Nsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/orderDto/DeleteOrderDto.java,8/5/8533031ce1ae3c31ff140bfb137949a968727b4f
 p
@@ -47,8 +33,6 @@ p
 Lsrc/main/java/ru/nsu/sber_portal/ccfit/exceptions/DishNotFoundException.java,6/b/6b51905e9b2cbfe50477b095b4340f391b95ac28
 t
 Dsrc/main/java/ru/nsu/sber_portal/ccfit/models/entity/Restaurant.java,8/1/81a1b3b13b17d170c80227bcf609504375ad21c0
-v
-Fsrc/main/java/ru/nsu/sber_portal/ccfit/services/RestaurantService.java,c/b/cb03a67e25cf4822508fdd41062ba6cd77e5b7f9
 |
 Lsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/orderDto/OrderPattern.java,a/5/a59ddea6035250d7c57fb9f21f208e4ae69c2174
 :
@@ -56,8 +40,6 @@ Lsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/orderDto/OrderPattern.java,a
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
-n
->src/main/java/ru/nsu/sber_portal/ccfit/models/entity/Dish.java,3/e/3ed7317c6c3089ead3e0c044578c7fda05a7c93e
 t
 Dsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/CheckTableDto.java,a/9/a96be36c4f91819a6bf14e3e7ef8040094cc7420
 x
@@ -68,11 +50,5 @@ t
 Dsrc/main/java/ru/nsu/sber_portal/ccfit/models/entity/CheckTable.java,2/c/2c607ccc2cc03be5fda432d8c3488f9a99a5b168
 o
 ?src/main/java/ru/nsu/sber_portal/ccfit/models/entity/Order.java,e/9/e9dcb831af658ffd1ef9c26191138359b99a911d
-u
-Esrc/main/java/ru/nsu/sber_portal/ccfit/models/mappers/DishMapper.java,4/d/4dc3c93c0b55f8f8f5a1b73a6f3fc2d20721fcca
 v
 Fsrc/main/java/ru/nsu/sber_portal/ccfit/models/mappers/CheckMapper.java,e/2/e2e8d660e06dec4b156d5c22e7f49b7afd62da82
-}
-Msrc/main/java/ru/nsu/sber_portal/ccfit/services/OrderCheckServiceUtility.java,d/d/ddb79c81d36d4ed8de70b40a0948971b4b76417d
-q
-Asrc/main/java/ru/nsu/sber_portal/ccfit/services/OrderService.java,4/3/43249497fdab8fbbe77705e1321be083656b1984

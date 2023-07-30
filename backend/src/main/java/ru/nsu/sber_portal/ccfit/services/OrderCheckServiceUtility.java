@@ -50,16 +50,16 @@ public class OrderCheckServiceUtility {
     }
 
     @Transactional
-    protected Restaurant createRestaurant(String nameRest){
-        return restaurantRepository.findByNameRestaurant (nameRest)
-            .orElseThrow (() -> new FindRestByTitleException ("No such rest"));
+    public Restaurant createRestaurant(String nameRest){
+        return restaurantRepository.findByNameRestaurant(nameRest)
+            .orElseThrow(() -> new FindRestByTitleException("No such rest"));
     }
 
     @Transactional
     protected Order findOrder(@NotNull OrderPattern deleteOrderDto) {
         return Optional.ofNullable(orderRepository.findByDishIdAndNumberTable(deleteOrderDto.getDishId(),
                                    deleteOrderDto.getNumberTable()))
-            .orElseThrow(() -> new NoSuchElementException ("Dish id " + deleteOrderDto.getDishId() + " wasn't found"));
+            .orElseThrow(() -> new NoSuchElementException("Dish id " + deleteOrderDto.getDishId() + " wasn't found"));
     }
 
     @Transactional

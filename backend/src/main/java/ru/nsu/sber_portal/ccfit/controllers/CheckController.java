@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.sber_portal.ccfit.exceptions.ParseJsonException;
@@ -21,7 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class CheckController {
-
+    private final ObjectMapper objectMapper = new ObjectMapper();
     private final CheckService checkService;
 
     @GetMapping("/{titleRest}/cart/{numberTable}")
@@ -36,10 +35,8 @@ public class CheckController {
     public HttpStatus deleteOrderToCheck(@PathVariable String titleRest,
                                          @NotNull HttpEntity<String> requestEntity) {
 
-        ObjectMapper objectMapper = new ObjectMapper();
         log.info("requestEntity: " + requestEntity.getBody());
         try {
-
             DeleteOrderDto deleteOrder = Optional
                 .ofNullable(objectMapper.readValue(requestEntity.getBody(), DeleteOrderDto.class))
                 .orElseThrow(() -> new ParseJsonException("Error parse OrderDto"));
@@ -59,15 +56,15 @@ public class CheckController {
     public HttpStatus shoppingCartPayment(@PathVariable String titleRest,
                                           @NotNull HttpEntity<String> requestEntity) {
 
-        ObjectMapper objectMapper = new ObjectMapper();
         log.info("shoppingCartPayment " + requestEntity.getBody());
         try {
             CheckTableDto checkTableDto = Optional.ofNullable(
                 objectMapper.readValue(requestEntity.getBody(), CheckTableDto.class))
                 .orElseThrow(() -> new ParseJsonException("Error parse OrderDto"));
-                log.info(checkTableDto.toString());
-             checkService.payment(titleRest, checkTableDto);
-             return HttpStatus.CREATED;
+
+            log.info(checkTableDto.toString());
+            checkService.payment(titleRest, checkTableDto);
+            return HttpStatus.CREATED;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
