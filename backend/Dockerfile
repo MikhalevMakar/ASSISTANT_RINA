@@ -1,5 +1,5 @@
 FROM openjdk:17-jdk-slim
-WORKDIR /app
+WORKDIR /app/.
 COPY . /app/.
 RUN ./gradlew bootWar
 EXPOSE 8080

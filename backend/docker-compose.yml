@@ -16,7 +16,9 @@ services:
   catalog-backend:
     container_name: catalog_backend
     restart: always
-    image: backend_image
+    build:
+      context: .
+      dockerfile: Dockerfile
 
     ports:
       - "8080:8080"

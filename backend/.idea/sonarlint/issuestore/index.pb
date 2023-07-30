@@ -5,17 +5,10 @@ n
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
 7
 gradlew,5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9
-:
-
-Dockerfile,6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4
 ?
 settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
 }
 Msrc/main/java/ru/nsu/sber_portal/ccfit/repositories/RestaurantRepository.java,c/f/cf40666acb41284b5d80d601dc023c03dd68cb27
-q
-Asrc/main/java/ru/nsu/sber_portal/ccfit/config/SecurityConfig.java,4/9/495b5129e04233aa61035a6bdc50427aebf2f2df
-o
-?src/main/java/ru/nsu/sber_portal/ccfit/config/FlywayConfig.java,7/f/7f34a2b0a7b038f4b02d52203ed916f088793013
 s
 Csrc/test/java/ru/nsu/sber_portal/ccfit/models/entity/OrderTest.java,9/8/98ef9d6168a269155a73b1ad0d2d48039067eae8
 t
@@ -44,8 +37,6 @@ v
 Fsrc/main/java/ru/nsu/sber_portal/ccfit/models/entity/CategoryMenu.java,a/1/a14857b652b5525245d714685debde655eb22354
 n
 >src/main/java/ru/nsu/sber_portal/ccfit/models/dto/DishDto.java,7/6/76872121e2dcee8d997945e2b6713fd29010f9cd
-v
-Fsrc/main/java/ru/nsu/sber_portal/ccfit/models/dto/CategoryMenuDto.java,2/e/2e730bde6ede11e77ba18a4d6947d329204443f8
 x
 Hsrc/main/java/ru/nsu/sber_portal/ccfit/services/CategoryMenuService.java,5/e/5e3af44ddcda6385a29f3cb3378719761936e2c1
 ~
@@ -85,5 +76,3 @@ Fsrc/main/java/ru/nsu/sber_portal/ccfit/models/mappers/CheckMapper.java,e/2/e2e
 Msrc/main/java/ru/nsu/sber_portal/ccfit/services/OrderCheckServiceUtility.java,d/d/ddb79c81d36d4ed8de70b40a0948971b4b76417d
 q
 Asrc/main/java/ru/nsu/sber_portal/ccfit/services/OrderService.java,4/3/43249497fdab8fbbe77705e1321be083656b1984
-q
-Asrc/main/java/ru/nsu/sber_portal/ccfit/services/CheckService.java,3/f/3f725bc99a2ce663658418b34970b3c72e55ea9c
