@@ -4,7 +4,7 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
-import ru.nsu.sber_portal.ccfit.exceptions.FindRestByTitleException;
+import ru.nsu.sber_portal.ccfit.exceptions.*;
 import ru.nsu.sber_portal.ccfit.models.dto.*;
 import ru.nsu.sber_portal.ccfit.models.entity.*;
 import ru.nsu.sber_portal.ccfit.models.mappers.DishMapper;
@@ -12,8 +12,7 @@ import ru.nsu.sber_portal.ccfit.repositories.*;
 
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -32,13 +31,13 @@ public class CategoryMenuService {
     public CategoryDishesDto getListDishByCategory(@NotNull String titleRest, @NotNull DishFindDto dishFindDto) {
         log.info("Get list by category_id {} and restaurant", dishFindDto.getId());
 
-        Restaurant restaurant = restaurantRepository.findByNameRestaurant(titleRest)
-                                            .orElseThrow(() -> new FindRestByTitleException ("No such rest"));
+        Restaurant restaurant = RestaurantService.createRestaurant(titleRest, restaurantRepository);
 
         CategoryMenu categoryMenu = Optional.ofNullable(dishFindDto.getId())
             .flatMap(categoryMenuRepository::findById)
-            .orElseGet(() -> categoryMenuRepository.findByRestaurantIdAndTitle(restaurant.getId(),
-                                                                               dishFindDto.getTitle()));
+            .or(() -> Optional.ofNullable(categoryMenuRepository.findByRestaurantIdAndTitleIgnoreCase(restaurant.getId(),
+                                                                                                      dishFindDto.getTitle())))
+            .orElseThrow(() -> new CategoryNotFoundException(titleRest));
 
         List<Dish> dishes = dishRepository
                                 .findByCategoryMenuIdAndRestaurantId(categoryMenu.getId(),

@@ -51,9 +51,10 @@ public class OrderCheckServiceUtility {
 
     @Transactional
     protected Order findOrder(@NotNull OrderPattern deleteOrderDto) {
-        return Optional.ofNullable(orderRepository.findByDishIdAndNumberTable(deleteOrderDto.getDishId(),
+        return Optional.ofNullable(orderRepository.findByDishIdAndNumberTable(deleteOrderDto.getDishFindDto().getId(),
                                    deleteOrderDto.getNumberTable()))
-            .orElseThrow(() -> new NoSuchElementException("Dish id " + deleteOrderDto.getDishId() + " wasn't found"));
+            .orElseThrow(() -> new NoSuchElementException("Dish id " + deleteOrderDto.getDishFindDto()
+                                                          .getId() + " wasn't found"));
     }
 
     @Transactional

@@ -11,5 +11,5 @@ public interface DishRepository extends JpaRepository<Dish, Long> {
 
     List<Dish> findByCategoryMenuIdAndRestaurantId(Long categoryId , Long restId);
 
-    Dish findByRestaurantIdAndTitle(Long restId, String titleDish);
+    Dish findByRestaurantIdAndTitleIgnoreCase(Long restId, String titleDish);
 }

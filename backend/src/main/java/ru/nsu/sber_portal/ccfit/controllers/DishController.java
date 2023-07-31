@@ -32,7 +32,7 @@ public class DishController {
         try {
             dishFindDto = Optional.ofNullable(
                 objectMapper.readValue(requestEntity.getBody(), DishFindDto.class))
-            .orElseThrow(() -> new ParseJsonException ("Error parse OrderDto"));
+            .orElseThrow(() -> new ParseJsonException("Error parse OrderDto"));
 
         } catch (JsonProcessingException e) {
             log.warn("During call method readValue " + e);

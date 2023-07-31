@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="42661cb5-c3e7-4518-8d88-6b9b0a9adc67" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/ru/nsu/sber_portal/ccfit/exceptions/CategoryNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ru/nsu/sber_portal/ccfit/controllers/DishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ru/nsu/sber_portal/ccfit/controllers/DishController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ru/nsu/sber_portal/ccfit/controllers/ErrorRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ru/nsu/sber_portal/ccfit/controllers/ErrorRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ru/nsu/sber_portal/ccfit/services/CategoryMenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ru/nsu/sber_portal/ccfit/services/CategoryMenuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ru/nsu/sber_portal/ccfit/services/DishService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/ru/nsu/sber_portal/ccfit/services/DishService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/API/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/API/PostService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AppRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AppRouter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Cart2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Cart2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CartLine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CartLine.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CustomCartItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CustomCartItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/DishesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DishesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ProductExample.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ProductExample.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SoloCounter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SoloCounter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Cart1.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Cart1.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/CategoryDishes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/CategoryDishes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/DishInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/DishInfo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MenuCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MenuCategory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Pay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Pay.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2T1MMxDTLItmRNWfdyKl9xDoeLz" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/natasamihaleva/ASSISTANT_RINA&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.Unnamed">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.nsu.sber_portal.ccfit.BackendApplication" />
+      <module name="ASSISTANT_RINA" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="42661cb5-c3e7-4518-8d88-6b9b0a9adc67" name="Changes" comment="" />
+      <created>1690206089580</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1690206089580</updated>
+      <workItem from="1690206092596" duration="1000" />
+      <workItem from="1690728668999" duration="3538000" />
+      <workItem from="1690768551747" duration="1261000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

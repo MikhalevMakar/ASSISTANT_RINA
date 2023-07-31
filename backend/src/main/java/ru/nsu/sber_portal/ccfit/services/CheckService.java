@@ -56,7 +56,7 @@ public class CheckService extends OrderCheckServiceUtility {
         mainOrder.setCount(mainOrder.getCount() - payedOrderDto.getCount());
 
         if(Objects.equals(mainOrder.getCount(), EMPTY_ORDER))
-            deleteOrder(mainOrder);
+            deleteOrder(OrderMapper.mapToDto(mainOrder));
         else
             orderRepository.save(mainOrder);
     }
@@ -98,7 +98,8 @@ public class CheckService extends OrderCheckServiceUtility {
 
         for(var orderDto : paymentCheckTableDto.getListOrderDto()) {
             mainCheckTable.getOrders().stream()
-                .filter(o -> Objects.equals(o.getDishId(), orderDto.getDishId()))
+                .filter(o -> Objects.equals(o.getDishId(),
+                                            orderDto.getDishFindDto().getId()))
                 .forEach(o -> checkDeleteOrder(o, orderDto));
         }
     }

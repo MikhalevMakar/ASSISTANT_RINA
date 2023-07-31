@@ -3,12 +3,15 @@ package ru.nsu.sber_portal.ccfit.services;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
+import ru.nsu.sber_portal.ccfit.exceptions.DishNotFoundException;
 import ru.nsu.sber_portal.ccfit.models.dto.orderDto.*;
 import ru.nsu.sber_portal.ccfit.models.entity.*;
 import ru.nsu.sber_portal.ccfit.models.mappers.OrderMapper;
 import ru.nsu.sber_portal.ccfit.repositories.*;
 
 import javax.transaction.Transactional;
+
+import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
 
@@ -36,12 +39,21 @@ public class OrderService extends OrderCheckServiceUtility {
     }
 
     @Transactional
-    public Order createOrderByCheckId(@NotNull Long checkId, @NotNull OrderDto orderDto, CheckTable checkTable) {
-        log.info("Create order by check id " + checkId);
+    public Order findOrder(@NotNull CheckTable checkTable, @NotNull OrderDto orderDto) {
+        Dish dish = DishService.createDish(orderDto.getDishFindDto(), checkTable.getRestaurant(), dishRepository);
+        return Optional.ofNullable(orderDto.getDishDto().getId())
+            .map(id -> orderRepository.findOrderByCheckIdAndDishId(checkTable.getId(), dish.getId()))
+            .orElseThrow(() -> new DishNotFoundException(checkTable.getRestaurant().getNameRestaurant()));
+    }
 
-        return ofNullable(orderRepository.findOrderByCheckIdAndDishId(checkId, orderDto.getDishId()))
+
+    @Transactional
+    public Order createOrderByCheckId(@NotNull OrderDto orderDto, CheckTable checkTable) {
+        log.info("Create order by check id " + checkTable.getId());
+
+        return ofNullable(findOrder(checkTable, orderDto))
             .map(order -> {
-                log.info("Order was found by dish id " + orderDto.getDishId());
+                log.info("Order was found by dish id " + orderDto.getDishFindDto().getId());
                 order.setCount(order.getCount() + orderDto.getCount());
                 order.setPrice(order.getPrice() + orderDto.getPrice());
                 orderRepository.save(order);
@@ -69,7 +81,7 @@ public class OrderService extends OrderCheckServiceUtility {
 
         log.info("Check table " + checkTable.getId());
 
-        Order order = createOrderByCheckId(checkTable.getId(), orderDto, checkTable);
+        Order order = createOrderByCheckId(orderDto, checkTable);
         log.info("Order Id " + order.getId() +
                  " price " + order.getPrice() +
                  " weight " + order.getNumberTable());

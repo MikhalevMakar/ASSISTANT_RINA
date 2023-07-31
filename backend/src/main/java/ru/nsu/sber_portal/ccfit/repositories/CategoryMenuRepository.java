@@ -6,5 +6,5 @@ import ru.nsu.sber_portal.ccfit.models.entity.CategoryMenu;
 
 @Repository
 public interface CategoryMenuRepository extends JpaRepository<CategoryMenu, Long> {
-    CategoryMenu findByRestaurantIdAndTitle(Long restId, String titleCategory);
+    CategoryMenu findByRestaurantIdAndTitleIgnoreCase(Long restId, String titleCategory);
 }
