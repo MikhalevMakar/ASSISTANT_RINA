@@ -26,8 +26,6 @@ Dsrc/main/java/ru/nsu/sber_portal/ccfit/models/entity/Restaurant.java,8/1/81a1b
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 v
 Fsrc/main/java/ru/nsu/sber_portal/ccfit/models/mappers/OrderMapper.java,f/0/f0b30ce6be55cd0df3dddd8429522285b2a925e9
 t
