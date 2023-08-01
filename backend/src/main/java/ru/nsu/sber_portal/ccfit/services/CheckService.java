@@ -93,10 +93,10 @@ public class CheckService extends OrderCheckServiceUtility {
         checkRepository.saveAndFlush(mainCheckTable);
 
         log.info("Main check table toString(): " + mainCheckTable);
-
         log.info("Payed check table toString() " + paymentCheckTable);
 
         for(var orderDto : paymentCheckTableDto.getListOrderDto()) {
+            log.info("Order dto " + orderDto.getDishFindDto().getId());
             mainCheckTable.getOrders().stream()
                 .filter(o -> Objects.equals(o.getDishId(),
                                             orderDto.getDishFindDto().getId()))

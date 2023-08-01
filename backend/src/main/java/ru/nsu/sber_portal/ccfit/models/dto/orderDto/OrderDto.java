@@ -9,8 +9,6 @@ import ru.nsu.sber_portal.ccfit.models.dto.DishDto;
 @NoArgsConstructor
 @Slf4j
 public class OrderDto extends OrderPattern {
-    private String titleDish;
-
     private Long price;
 
     private DishDto dishDto;

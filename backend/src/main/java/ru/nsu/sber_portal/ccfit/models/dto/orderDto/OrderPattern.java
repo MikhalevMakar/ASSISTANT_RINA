@@ -10,7 +10,7 @@ import ru.nsu.sber_portal.ccfit.models.dto.DishFindDto;
 @Slf4j
 public class OrderPattern {
 
-    protected DishFindDto dishFindDto;
+    protected DishFindDto dishFindDto = new DishFindDto();
 
     protected Integer numberTable;
 

@@ -38,6 +38,11 @@ public class Restaurant extends ContextModel {
                            CascadeType.PERSIST }, mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<CheckTable> checkTables;
 
+    @OneToMany(cascade = { CascadeType.REFRESH,
+                           CascadeType.MERGE,
+                           CascadeType.PERSIST }, mappedBy = "restaurant", fetch = FetchType.EAGER)
+    private List<Review> reviews;
+
     public void addCheckTable(CheckTable checkTable) {
         checkTables.add(checkTable);
     }

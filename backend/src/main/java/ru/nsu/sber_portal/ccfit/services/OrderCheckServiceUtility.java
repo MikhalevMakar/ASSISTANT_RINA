@@ -45,6 +45,7 @@ public class OrderCheckServiceUtility {
                 checkTable.setRestaurant(restaurant);
                 checkTable.setSessionStatus(SessionStatus.PLACED);
                 restaurant.addCheckTable(checkTable);
+                checkRepository.save(checkTable);
                 return checkTable;
             });
     }
@@ -71,7 +72,9 @@ public class OrderCheckServiceUtility {
         for(var order : checkTable.getOrders()) {
 
             OrderDto orderDto = OrderMapper.mapToDto(order);
-            log.info("Info order  " + order.getDishId() + order.getCount() + order.getPrice());
+            log.info("Info order dish id " + order.getDishId() +
+                     " count " + order.getCount() +
+                     " price " + order.getPrice());
 
             Dish dish = dishRepository.findById(order.getDishId())
                 .orElseThrow(() -> new DishNotFoundException ("Dish id " + order.getDishId()));
@@ -86,10 +89,11 @@ public class OrderCheckServiceUtility {
 
     public void settingCheckTable(@NotNull CheckTable checkTable,
                                   @NotNull OrderDto orderDto,
+                                  @NotNull Dish dish,
                                   @NotNull Restaurant rest) {
 
         log.info("Setting check table");
-        checkTable.setCost(orderDto.getPrice() + checkTable.getCost());
+        checkTable.setCost(dish.getPrice() + checkTable.getCost());
         checkTable.setNumberTable(orderDto.getNumberTable());
         checkTable.setSessionStatus(SessionStatus.PLACED);
         checkTable.setRestaurant(rest);

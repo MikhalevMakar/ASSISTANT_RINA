@@ -5,8 +5,8 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DishFindDto {
-    private Long id;
+public class ReviewDto {
+    private Byte score;
 
-    private String title;
+    private String text;
 }

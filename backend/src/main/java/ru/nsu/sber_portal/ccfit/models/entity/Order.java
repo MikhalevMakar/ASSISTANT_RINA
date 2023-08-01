@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "order_table")
+//@EqualsAndHashCode(callSuper=false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

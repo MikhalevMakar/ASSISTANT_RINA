@@ -56,7 +56,7 @@ public class CheckController {
     public HttpStatus shoppingCartPayment(@PathVariable String titleRest,
                                           @NotNull HttpEntity<String> requestEntity) {
 
-        log.info("shoppingCartPayment " + requestEntity.getBody());
+        log.info("Shopping cart payment " + requestEntity.getBody());
         try {
             CheckTableDto checkTableDto = Optional.ofNullable(
                 objectMapper.readValue(requestEntity.getBody(), CheckTableDto.class))

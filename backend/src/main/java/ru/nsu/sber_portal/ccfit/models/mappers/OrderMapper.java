@@ -2,22 +2,18 @@ package ru.nsu.sber_portal.ccfit.models.mappers;
 
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.*;
+import ru.nsu.sber_portal.ccfit.models.dto.DishFindDto;
 import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderDto;
-import ru.nsu.sber_portal.ccfit.models.dto.orderDto.OrderPattern;
 import ru.nsu.sber_portal.ccfit.models.entity.Order;
 
 @AllArgsConstructor
 public class OrderMapper {
-    public static void setOrderPatternEntity(@NotNull OrderPattern orderDto,
-                                             @NotNull OrderPattern order) {
-        order.setCount(orderDto.getCount());
-        order.setNumberTable(orderDto.getNumberTable());
-        order.setDishId(orderDto.getDishId());
-    }
-
     public static void setOrderEntity(@NotNull Order order,
                                       @NotNull OrderDto orderDto) {
-        setOrderPatternEntity(orderDto, order);
+
+        order.setCount(orderDto.getCount());
+        order.setNumberTable(orderDto.getNumberTable());
+        order.setDishId(orderDto.getDishFindDto().getId());
         order.setPrice(orderDto.getPrice());
     }
 
@@ -33,7 +29,7 @@ public class OrderMapper {
         orderDto.setNumberTable(order.getNumberTable());
         orderDto.setCount(order.getCount());
         orderDto.setPrice(order.getPrice());
-        orderDto.setDishId(order.getDishId());
+        orderDto.setDishFindDto(new DishFindDto(order.getDishId(), null));
         return orderDto;
     }
 }

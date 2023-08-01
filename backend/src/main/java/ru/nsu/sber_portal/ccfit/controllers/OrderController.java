@@ -27,6 +27,7 @@ public class OrderController {
     @PostMapping("/{titleRest}/order/change")
     public HttpStatus changeOrder(@PathVariable String titleRest,
                                   @NotNull HttpEntity<String> requestEntity) {
+        log.info("Change order, body" + requestEntity.getBody());
         ChangeOrderDto changeOrderDto;
         try {
             changeOrderDto = Optional.ofNullable(
@@ -38,7 +39,7 @@ public class OrderController {
             return HttpStatus.BAD_REQUEST;
         }
 
-        log.info("Change count dish " + changeOrderDto.getDishId() + " in rest" + titleRest);
+        log.info("Change count dish " + changeOrderDto.getDishFindDto().getId() + " in rest" + titleRest);
         orderService.changeOrder(changeOrderDto);
         return HttpStatus.CREATED;
     }
@@ -54,6 +55,7 @@ public class OrderController {
                                     .orElseThrow(() -> new ParseJsonException("Error parse OrderDto"));
 
             log.info("Cart post: " + orderDto + ", check: " + titleRest);
+            log.info("Order dto " + orderDto.getDishFindDto().getId());
             orderService.addNewOrder(orderDto, titleRest);
             return HttpStatus.CREATED;
         } catch (JsonProcessingException e) {
