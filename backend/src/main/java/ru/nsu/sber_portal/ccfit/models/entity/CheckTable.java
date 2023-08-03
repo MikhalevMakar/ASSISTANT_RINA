@@ -28,8 +28,7 @@ public class CheckTable {
                            CascadeType.DETACH,
                            CascadeType.MERGE,
                            CascadeType.PERSIST },
-             fetch = FetchType.EAGER, mappedBy = "check",
-             orphanRemoval = true)
+             fetch = FetchType.EAGER, mappedBy = "check")
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
