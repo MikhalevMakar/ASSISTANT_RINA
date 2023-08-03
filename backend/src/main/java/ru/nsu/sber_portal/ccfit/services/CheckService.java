@@ -17,22 +17,26 @@ import java.util.*;
 @Slf4j
 public class CheckService extends OrderCheckServiceUtility {
 
-    public CheckService(OrderRepository orderRepository,
-                        RestaurantRepository restRepository,
-                        CheckTableRepository checkRepository,
-                        DishRepository dishRepository) {
+    private final OrderService orderService;
 
-        super(orderRepository,
-              restRepository,
+    public CheckService(OrderRepository orderRepository,
+                        CheckTableRepository checkRepository,
+                        DishRepository dishRepository,
+                        RestaurantService restaurantService,
+                        OrderService orderService) {
+
+        super(restaurantService,
+              orderRepository,
               checkRepository,
               dishRepository);
+        this.orderService = orderService;
     }
 
     @Transactional
     public CheckTableDto getCheck(String nameRest, Integer numberTable) {
         log.info("Method get check for restaurant " + nameRest);
 
-        Restaurant restaurant = RestaurantService.createRestaurant(nameRest, restRepository);
+        Restaurant restaurant = restaurantService.createRestaurant(nameRest);
 
         log.info(" Id restaurant " + restaurant.getId());
 
@@ -56,7 +60,7 @@ public class CheckService extends OrderCheckServiceUtility {
         mainOrder.setCount(mainOrder.getCount() - payedOrderDto.getCount());
 
         if(Objects.equals(mainOrder.getCount(), EMPTY_ORDER))
-            deleteOrder(OrderMapper.mapToDto(mainOrder));
+            orderService.deleteOrder(OrderMapper.mapToDto(mainOrder));
         else
             orderRepository.save(mainOrder);
     }
@@ -77,7 +81,7 @@ public class CheckService extends OrderCheckServiceUtility {
     public void payment(@NotNull String titleRest,
                         @NotNull CheckTableDto paymentCheckTableDto) {
 
-        Restaurant restaurant = RestaurantService.createRestaurant(titleRest, restRepository);
+        Restaurant restaurant = restaurantService.createRestaurant(titleRest);
         log.info("Method payment " + paymentCheckTableDto);
 
         paymentCheckTableDto.setRestId(restaurant.getId());
@@ -97,6 +101,7 @@ public class CheckService extends OrderCheckServiceUtility {
 
         for(var orderDto : paymentCheckTableDto.getListOrderDto()) {
             log.info("Order dto " + orderDto.getDishFindDto().getId());
+           
             mainCheckTable.getOrders().stream()
                 .filter(o -> Objects.equals(o.getDishId(),
                                             orderDto.getDishFindDto().getId()))

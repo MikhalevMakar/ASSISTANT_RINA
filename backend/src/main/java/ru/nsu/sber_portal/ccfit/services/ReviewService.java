@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.nsu.sber_portal.ccfit.exceptions.FindRestByTitleException;
 import ru.nsu.sber_portal.ccfit.models.dto.ReviewDto;
 import ru.nsu.sber_portal.ccfit.models.entity.*;
 import ru.nsu.sber_portal.ccfit.models.mappers.ReviewMapper;
@@ -19,25 +18,24 @@ import java.util.List;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
 
-    private final RestaurantRepository restRepository;
+    private final RestaurantService restaurantService;
 
     @Transactional
     public void addNewReview(@NotNull String titleRest, @NotNull ReviewDto reviewDto) {
         log.info("Add new review");
 
-        Restaurant restaurant = restRepository.findRestaurantByNameRestaurant(titleRest)
-            .orElseThrow(() -> new FindRestByTitleException("No such rest " + titleRest));
+        Restaurant restaurant = restaurantService.createRestaurant(titleRest);
 
         Review review = ReviewMapper.mapperToEntity(reviewDto);
         log.info("Save review");
         review.setRestaurant(restaurant);
         restaurant.getReviews().add(review);
-        restRepository.save(restaurant);
+        restaurantService.getRestaurantRepository().save(restaurant);
     }
 
     @Transactional
     public List<ReviewDto> getListReviews(@NotNull String titleRest) {
-        Restaurant restaurant = RestaurantService.createRestaurant(titleRest, restRepository);
+        Restaurant restaurant = restaurantService.createRestaurant(titleRest);
         return reviewRepository.getListByRestaurant(restaurant).stream()
                 .map(ReviewMapper::mapperToDto)
                 .toList();

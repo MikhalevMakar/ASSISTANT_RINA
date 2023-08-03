@@ -12,8 +12,6 @@ import ru.nsu.sber_portal.ccfit.models.mappers.*;
 import ru.nsu.sber_portal.ccfit.repositories.*;
 
 import javax.transaction.Transactional;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
 
@@ -23,14 +21,29 @@ public class OrderCheckServiceUtility {
 
     protected static final Integer EMPTY_ORDER = 0;
 
-    protected final OrderRepository orderRepository;
+    protected static final Integer EMPTY_PRICE = 0;
 
-    protected final RestaurantRepository restRepository;
+    protected final RestaurantService restaurantService;
+
+    protected final OrderRepository orderRepository;
 
     protected final CheckTableRepository checkRepository;
 
     protected final DishRepository dishRepository;
 
+    public void settingCheckTable(@NotNull CheckTable checkTable,
+                                  @NotNull Integer numberTable,
+                                  @NotNull Integer increasePrice,
+                                  @NotNull Restaurant rest) {
+
+        log.info("Setting check table");
+        checkTable.setCost(increasePrice + checkTable.getCost());
+        checkTable.setNumberTable(numberTable);
+        checkTable.setSessionStatus(SessionStatus.PLACED);
+        checkTable.setRestaurant(rest);
+    }
+
+    @Transactional
     protected CheckTable createCheckTable(@NotNull Integer numberTable,
                                           @NotNull Restaurant restaurant) {
         return ofNullable(checkRepository
@@ -41,29 +54,14 @@ public class OrderCheckServiceUtility {
             ))
             .orElseGet(() -> {
                 CheckTable checkTable = new CheckTable();
-                checkTable.setNumberTable(numberTable);
-                checkTable.setRestaurant(restaurant);
-                checkTable.setSessionStatus(SessionStatus.PLACED);
+                settingCheckTable(checkTable,
+                    numberTable,
+                    EMPTY_PRICE,
+                    restaurant);
                 restaurant.addCheckTable(checkTable);
                 checkRepository.save(checkTable);
                 return checkTable;
             });
-    }
-
-    @Transactional
-    protected Order findOrder(@NotNull OrderPattern deleteOrderDto) {
-        return Optional.ofNullable(orderRepository.findByDishIdAndNumberTable(deleteOrderDto.getDishFindDto().getId(),
-                                   deleteOrderDto.getNumberTable()))
-            .orElseThrow(() -> new NoSuchElementException("Dish id " + deleteOrderDto.getDishFindDto()
-                                                          .getId() + " wasn't found"));
-    }
-
-    @Transactional
-    public void deleteOrder(@NotNull OrderPattern deleteOrderDto) {
-        Order order = findOrder(deleteOrderDto);
-        log.info("Delete order by id " + order.getId());
-        order.getCheck().getOrders().remove(order);
-        orderRepository.delete(order);
     }
 
     @Transactional
@@ -85,17 +83,5 @@ public class OrderCheckServiceUtility {
 
             checkTableDto.addOrderDto(orderDto);
         }
-    }
-
-    public void settingCheckTable(@NotNull CheckTable checkTable,
-                                  @NotNull OrderDto orderDto,
-                                  @NotNull Dish dish,
-                                  @NotNull Restaurant rest) {
-
-        log.info("Setting check table");
-        checkTable.setCost(dish.getPrice() + checkTable.getCost());
-        checkTable.setNumberTable(orderDto.getNumberTable());
-        checkTable.setSessionStatus(SessionStatus.PLACED);
-        checkTable.setRestaurant(rest);
     }
 }

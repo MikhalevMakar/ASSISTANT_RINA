@@ -27,13 +27,13 @@ services:
     links:
       - catalog-database
 
-#  catalog-frontend:
-#    container_name: catalog_frontend
-#    restart: always
-#    build:
-#      context: ../frontend
-#      dockerfile: Dockerfile
-#    ports:
-#      - "3000:3000"
-#    links:
-#      - catalog-backend
+  catalog-frontend:
+    container_name: catalog_frontend
+    restart: always
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - catalog-backend

@@ -24,14 +24,14 @@ public class CategoryMenuService {
 
     private final CategoryMenuRepository categoryMenuRepository;
 
-    private final RestaurantRepository restaurantRepository;
+    private final RestaurantService restaurantService;
 
 
     @Transactional
     public CategoryDishesDto getListDishByCategory(@NotNull String titleRest, @NotNull DishFindDto dishFindDto) {
         log.info("Get list by category_id {} and restaurant", dishFindDto.getId());
 
-        Restaurant restaurant = RestaurantService.createRestaurant(titleRest, restaurantRepository);
+        Restaurant restaurant = restaurantService.createRestaurant(titleRest);
 
         CategoryMenu categoryMenu = Optional.ofNullable(dishFindDto.getId())
             .flatMap(categoryMenuRepository::findById)

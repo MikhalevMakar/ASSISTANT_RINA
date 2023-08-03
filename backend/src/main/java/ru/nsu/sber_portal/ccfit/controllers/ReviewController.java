@@ -24,8 +24,6 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
     @PostMapping(value = "/{titleRest}/review")
     public ResponseEntity<Void> addNewReview(@PathVariable String titleRest,
                                              @RequestBody ReviewDto reviewDto) {
@@ -39,8 +37,6 @@ public class ReviewController {
     @GetMapping("/{titleRest}/reviews")
     public List<ReviewDto> getReviews(@PathVariable String titleRest) {
         log.info("Get review in rest " + titleRest);
-        List<ReviewDto> reviews = reviewService.getListReviews(titleRest);
-        log.info("List reviews " + reviews.size());
-        return reviews;
+        return reviewService.getListReviews(titleRest);
     }
 }

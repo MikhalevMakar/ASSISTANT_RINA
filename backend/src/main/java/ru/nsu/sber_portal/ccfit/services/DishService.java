@@ -2,10 +2,8 @@ package ru.nsu.sber_portal.ccfit.services;
 
 import org.jetbrains.annotations.NotNull;
 import ru.nsu.sber_portal.ccfit.exceptions.DishNotFoundException;
-import ru.nsu.sber_portal.ccfit.models.dto.DishDto;
-import ru.nsu.sber_portal.ccfit.models.dto.DishFindDto;
-import ru.nsu.sber_portal.ccfit.models.entity.Dish;
-import ru.nsu.sber_portal.ccfit.models.entity.Restaurant;
+import ru.nsu.sber_portal.ccfit.models.dto.*;
+import ru.nsu.sber_portal.ccfit.models.entity.*;
 import ru.nsu.sber_portal.ccfit.models.mappers.DishMapper;
 import ru.nsu.sber_portal.ccfit.repositories.*;
 import lombok.*;
@@ -18,7 +16,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 public class DishService {
-    private final RestaurantRepository restRepository;
+    private final RestaurantService restaurantService;
 
     private final DishRepository dishRepository;
 
@@ -35,7 +33,7 @@ public class DishService {
 
     public DishDto getDishDto(String titleRest, @NotNull DishFindDto dishFindDto) {
         log.info("Create dish dto");
-        Restaurant restaurant = RestaurantService.createRestaurant(titleRest, restRepository);
+        Restaurant restaurant = restaurantService.createRestaurant(titleRest);
         Dish dish = createDish(dishFindDto, restaurant, dishRepository);
         return DishMapper.mapperToDto(dish);
     }
