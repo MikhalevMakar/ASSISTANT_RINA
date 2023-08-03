@@ -42,7 +42,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	implementation group: 'org.flywaydb', name: 'flyway-core', version: '9.21.0'
+//	implementation group: 'org.flywaydb', name: 'flyway-core', version: '9.21.0'
 
 	implementation 'javax.servlet:javax.servlet-api:4.0.1'
 

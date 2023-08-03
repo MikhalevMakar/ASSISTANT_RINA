@@ -25,10 +25,10 @@ public class CheckTable {
     private Integer numberTable;
 
     @OneToMany(cascade = { CascadeType.REFRESH,
-                           CascadeType.DETACH,
                            CascadeType.MERGE,
                            CascadeType.PERSIST },
-             fetch = FetchType.EAGER, mappedBy = "check")
+             fetch = FetchType.EAGER, mappedBy = "check",
+             orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)

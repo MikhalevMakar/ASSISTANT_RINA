@@ -17,7 +17,6 @@ public class Order {
     private Long id;
 
     @ManyToOne(cascade = { CascadeType.REFRESH,
-                           CascadeType.DETACH,
                            CascadeType.MERGE,
                            CascadeType.PERSIST },
                fetch = FetchType.EAGER)

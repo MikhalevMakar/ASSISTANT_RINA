@@ -28,8 +28,6 @@ Psrc/main/java/ru/nsu/sber_portal/ccfit/exceptions/CategoryNotFoundException.jav
 Lsrc/main/java/ru/nsu/sber_portal/ccfit/exceptions/DishNotFoundException.java,6/b/6b51905e9b2cbfe50477b095b4340f391b95ac28
 ‚
 Rsrc/main/java/ru/nsu/sber_portal/ccfit/exceptions/RestaurantNotFoundException.java,2/5/25606a92fdbe429a61866a6b7ae5ebeb4d225d32
-n
->src/main/java/ru/nsu/sber_portal/ccfit/BackendApplication.java,b/1/b14b8480610481006fd69bcc08fd3d358cd684f1
 w
 Gsrc/main/java/ru/nsu/sber_portal/ccfit/repositories/DishRepository.java,3/8/384654cd659d475ac5ada6a62bb60e19783f9c7b
 
@@ -48,8 +46,6 @@ s
 Csrc/test/java/ru/nsu/sber_portal/ccfit/models/entity/OrderTest.java,9/8/98ef9d6168a269155a73b1ad0d2d48039067eae8
 q
 Asrc/main/java/ru/nsu/sber_portal/ccfit/config/SecurityConfig.java,4/9/495b5129e04233aa61035a6bdc50427aebf2f2df
-o
-?src/main/java/ru/nsu/sber_portal/ccfit/config/FlywayConfig.java,7/f/7f34a2b0a7b038f4b02d52203ed916f088793013
 ;
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
 {
@@ -62,8 +58,6 @@ p
 @src/main/java/ru/nsu/sber_portal/ccfit/models/dto/ReviewDto.java,e/9/e99c842100a5b5ec824027906d4fa93d1149d8a1
 }
 Msrc/main/java/ru/nsu/sber_portal/ccfit/repositories/RestaurantRepository.java,c/f/cf40666acb41284b5d80d601dc023c03dd68cb27
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 y
 Isrc/main/java/ru/nsu/sber_portal/ccfit/repositories/ReviewRepository.java,e/2/e2c7244df5c48effe7b920f7d82f53b9c64179de
 v
@@ -75,8 +69,6 @@ Hsrc/main/java/ru/nsu/sber_portal/ccfit/services/CategoryMenuService.java,5/e/5
 :
 
 Dockerfile,6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4
-B
-docker-compose.yml,3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a
 r
 Bsrc/main/java/ru/nsu/sber_portal/ccfit/services/ReviewService.java,5/5/55d5d3a4c6e9e5b785014306b51f71c087141b84
 x
