@@ -84,7 +84,7 @@ public class OrderService extends OrderCheckServiceUtility {
         CheckTable checkTable = order.getCheck();
         checkTable.setCost(checkTable.getCost() - order.getPrice());
         checkTable.getOrders().remove(order);
-        order.getCheck().getOrders().remove(order);
+        orderRepository.delete(order);
         checkRepository.save(checkTable);
     }
 
