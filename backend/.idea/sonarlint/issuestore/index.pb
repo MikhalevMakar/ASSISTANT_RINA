@@ -113,5 +113,3 @@ o
 ?src/main/java/ru/nsu/sber_portal/ccfit/models/entity/Order.java,e/9/e9dcb831af658ffd1ef9c26191138359b99a911d
 t
 Dsrc/main/java/ru/nsu/sber_portal/ccfit/models/entity/CheckTable.java,2/c/2c607ccc2cc03be5fda432d8c3488f9a99a5b168
-4
-.env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a

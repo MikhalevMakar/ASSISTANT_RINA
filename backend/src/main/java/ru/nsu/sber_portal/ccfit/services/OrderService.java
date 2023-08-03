@@ -60,7 +60,7 @@ public class OrderService extends OrderCheckServiceUtility {
                 log.info("Order wasn't found");
                 Order order = OrderMapper.mapToEntity(orderDto);
                 order.setDishId(dish.getId());
-                order.setPrice((long) dish.getPrice() * orderDto.getCount());
+                order.setPrice(dish.getPrice() * orderDto.getCount());
                 order.setCheck(checkTable);
                 checkTable.addNewOrder(order);
                 checkRepository.save(checkTable);
@@ -81,8 +81,11 @@ public class OrderService extends OrderCheckServiceUtility {
     public void deleteOrder(@NotNull OrderPattern deleteOrderDto) {
         Order order = findOrder(deleteOrderDto);
         log.info("Delete order by id " + order.getId());
-        order.getCheck().getOrders().remove(order);
-        orderRepository.delete(order);
+        CheckTable checkTable = order.getCheck();
+        checkTable.getOrders().remove(order);
+//        order.getCheck().getOrders().remove(order);
+//        orderRepository.delete(order);
+        checkRepository.save(checkTable);
     }
 
     @Transactional
