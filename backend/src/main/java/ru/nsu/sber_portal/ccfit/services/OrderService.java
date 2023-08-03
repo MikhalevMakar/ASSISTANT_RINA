@@ -19,17 +19,20 @@ import static java.util.Optional.ofNullable;
 @Service
 @Slf4j
 public class OrderService extends OrderCheckServiceUtility {
+    private final DishService dishService;
 
     @Autowired
     public OrderService(OrderRepository orderRepository,
                         CheckTableRepository checkRepository,
                         DishRepository dishRepository,
-                        RestaurantService restaurantService) {
+                        RestaurantService restaurantService,
+                        DishService dishService) {
 
         super(restaurantService,
               orderRepository,
               checkRepository,
               dishRepository);
+        this.dishService = dishService;
     }
 
     @Transactional
@@ -41,14 +44,16 @@ public class OrderService extends OrderCheckServiceUtility {
     }
 
     @Transactional
-    public @NotNull Order createOrderByCheckId(@NotNull OrderDto orderDto, @NotNull CheckTable checkTable) {
+    public @NotNull Order createOrderByCheck(@NotNull OrderDto orderDto, @NotNull CheckTable checkTable) {
         log.info("Create order by check id " + checkTable.getId());
-        Dish dish = DishService.createDish(orderDto.getDishFindDto(), checkTable.getRestaurant(), dishRepository);
+        Dish dish = dishService.createDish(orderDto.getDishFindDto(),
+                                           checkTable.getRestaurant());
+
         return ofNullable(orderRepository.findOrderByCheckIdAndDishId(checkTable.getId(), dish.getId()))
             .map(order -> {
                 log.info("Order was found by dish id " + orderDto.getDishFindDto().getId());
                 order.setCount(order.getCount() + orderDto.getCount());
-                order.setPrice(order.getPrice() + (long) dish.getPrice () * orderDto.getCount());
+                order.setPrice(order.getPrice() + dish.getPrice() * orderDto.getCount());
                 orderRepository.save(order);
                 return order;
             }).orElseGet(() -> {
@@ -65,10 +70,11 @@ public class OrderService extends OrderCheckServiceUtility {
 
     @Transactional
     protected Order findOrder(@NotNull OrderPattern deleteOrderDto) {
-        return Optional.ofNullable(orderRepository.findByDishIdAndNumberTable(deleteOrderDto.getDishFindDto().getId(),
-                deleteOrderDto.getNumberTable()))
-            .orElseThrow(() -> new NoSuchElementException ("Dish id " + deleteOrderDto.getDishFindDto()
-                .getId() + " wasn't found"));
+        return Optional.ofNullable(orderRepository
+                        .findByDishIdAndNumberTable(deleteOrderDto.getDishFindDto().getId(),
+                                                    deleteOrderDto.getNumberTable()))
+                .orElseThrow(() -> new NoSuchElementException ("Dish id " + deleteOrderDto.getDishFindDto()
+                        .getId() + " wasn't found"));
     }
 
     @Transactional
@@ -87,19 +93,16 @@ public class OrderService extends OrderCheckServiceUtility {
         CheckTable checkTable = createCheckTable(orderDto.getNumberTable(),
                                                  restaurant);
 
-        Dish dish = DishService.createDish(orderDto.getDishFindDto(), restaurant, dishRepository);
-        checkTable.setCost(checkTable.getCost() + (long) dish.getPrice () * orderDto.getCount());
+        Dish dish = dishService.createDish(orderDto.getDishFindDto(), restaurant);
 
         settingCheckTable(checkTable,
                           orderDto.getNumberTable(),
-                          dish.getPrice(),
+              dish.getPrice() * orderDto.getCount(),
                           restaurant);
 
         log.info("Check table " + checkTable.getId());
 
-        Order order = createOrderByCheckId(orderDto, checkTable);
-        log.info("Order Id " + order.getId() +
-                 " price " + order.getPrice() +
-                 " weight " + order.getNumberTable());
+        Order order = createOrderByCheck(orderDto, checkTable);
+        log.info("Order Id " + order.getId() + " price " + order.getPrice());
     }
 }

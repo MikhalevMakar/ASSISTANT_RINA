@@ -14,5 +14,5 @@ public class OrderPattern {
 
     protected Integer numberTable;
 
-    protected Integer count;
+    protected Long count;
 }

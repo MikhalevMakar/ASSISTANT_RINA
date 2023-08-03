@@ -19,7 +19,8 @@ public class Order {
     @ManyToOne(cascade = { CascadeType.REFRESH,
                            CascadeType.DETACH,
                            CascadeType.MERGE,
-                           CascadeType.PERSIST }, fetch = FetchType.EAGER)
+                           CascadeType.PERSIST },
+               fetch = FetchType.EAGER)
 
     @JoinColumn(name = "check_table_id")
     private CheckTable check;
@@ -34,7 +35,7 @@ public class Order {
     protected Integer numberTable;
 
     @Column(name = "count")
-    protected Integer count;
+    protected Long count;
 
     @Override
     public String toString() {

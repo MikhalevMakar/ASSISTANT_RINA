@@ -26,7 +26,9 @@ public class CheckTable {
     @OneToMany(cascade = { CascadeType.REFRESH,
                            CascadeType.DETACH,
                            CascadeType.MERGE,
-                           CascadeType.PERSIST }, fetch = FetchType.EAGER, mappedBy = "check")
+                           CascadeType.PERSIST },
+             fetch = FetchType.EAGER, mappedBy = "check",
+             orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)

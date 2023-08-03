@@ -27,7 +27,7 @@ public class OrderController {
     @DeleteMapping("/{titleRest}/cart")
     public HttpStatus deleteOrderToCheck(@PathVariable String titleRest,
                                          @RequestBody DeleteOrderDto deleteOrder) {
-        log.info("requestEntity: " + deleteOrder + " in rest " + titleRest);
+        log.info("Delete order: " + deleteOrder + " in rest " + titleRest);
         orderService.deleteOrder(deleteOrder);
         return HttpStatus.CREATED;
     }

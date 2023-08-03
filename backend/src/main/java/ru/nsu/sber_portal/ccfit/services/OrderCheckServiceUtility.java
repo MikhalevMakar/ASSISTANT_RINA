@@ -21,7 +21,7 @@ public class OrderCheckServiceUtility {
 
     protected static final Integer EMPTY_ORDER = 0;
 
-    protected static final Integer EMPTY_PRICE = 0;
+    protected static final Long EMPTY_PRICE = 0L;
 
     protected final RestaurantService restaurantService;
 
@@ -33,7 +33,7 @@ public class OrderCheckServiceUtility {
 
     public void settingCheckTable(@NotNull CheckTable checkTable,
                                   @NotNull Integer numberTable,
-                                  @NotNull Integer increasePrice,
+                                  @NotNull Long increasePrice,
                                   @NotNull Restaurant rest) {
 
         log.info("Setting check table");
@@ -55,9 +55,9 @@ public class OrderCheckServiceUtility {
             .orElseGet(() -> {
                 CheckTable checkTable = new CheckTable();
                 settingCheckTable(checkTable,
-                    numberTable,
-                    EMPTY_PRICE,
-                    restaurant);
+                                  numberTable,
+                                  EMPTY_PRICE,
+                                  restaurant);
                 restaurant.addCheckTable(checkTable);
                 checkRepository.save(checkTable);
                 return checkTable;

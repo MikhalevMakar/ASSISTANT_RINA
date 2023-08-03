@@ -6,11 +6,46 @@ create sequence restaurant_seq start with 1 increment by 50;
 create sequence review_seq start with 1 increment by 50;
 
 create table category_menu (
-   id bigint not null,
-   rest_id bigint,
-   link_image varchar(1000),
-   title varchar(1000),
-   primary key (id)
+    id bigint not null,
+    rest_id bigint,
+    link_image varchar(1000),
+    title varchar(1000),
+    primary key (id)
+);
+
+
+create table check_table (
+    number_table integer,
+    session_status smallint check (session_status between 0 and 1),
+    cost bigint,
+    date_created timestamp(6),
+    id bigint not null,
+    rest_id bigint,
+    primary key (id)
+);
+
+create table dish (
+    is_stop_list boolean,
+    weight float(53),
+    category_id bigint,
+    date_created timestamp(6),
+    id bigint not null,
+    price bigint,
+    rest_id bigint,
+    link_image varchar(1000),
+    description text,
+    title varchar(255),
+    primary key (id)
+);
+
+create table order_table (
+    number_table integer,
+    check_table_id bigint,
+    count bigint,
+    dish_id bigint,
+    id bigint not null,
+    price bigint,
+    primary key (id)
 );
 
 create table restaurant (
@@ -23,46 +58,11 @@ create table restaurant (
 
 create table review (
     score smallint,
-    id bigserial not null,
+    id bigint not null,
     restaurant_id bigint,
     text text,
     primary key (id)
 );
-
-create table check_table (
-    number_table integer,
-    session_status smallint check(session_status between 0 and 1),
-    cost bigint,
-    date_created timestamp(6),
-    id bigint not null,
-    rest_id bigint,
-    primary key (id)
-);
-
-create table dish (
-    is_stop_list boolean,
-    price integer,
-    weight float(53),
-    category_id bigint,
-    date_created timestamp(6),
-    id bigint not null,
-    rest_id bigint,
-    link_image varchar(1000),
-    description text,
-    title varchar(255),
-    primary key (id)
-);
-
-create table order_table (
-     count integer,
-     number_table integer,
-     check_table_id bigint,
-     dish_id bigint,
-     id bigint not null,
-     price bigint,
-     primary key (id)
-);
-
 
 alter table if exists category_menu add constraint FKkr05f61eb9fdurxnbh41n0rit foreign key (rest_id) references restaurant;
 alter table if exists check_table add constraint FKo5ivlp4avf0yvb95sd1uj4p3c foreign key (rest_id) references restaurant;

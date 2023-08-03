@@ -13,7 +13,7 @@ public class DishDto {
 
      private String description;
 
-     private int price;
+     private Long price;
 
      private double weight;
 

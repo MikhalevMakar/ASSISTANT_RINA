@@ -100,8 +100,6 @@ public class CheckService extends OrderCheckServiceUtility {
         log.info("Payed check table toString() " + paymentCheckTable);
 
         for(var orderDto : paymentCheckTableDto.getListOrderDto()) {
-            log.info("Order dto " + orderDto.getDishFindDto().getId());
-           
             mainCheckTable.getOrders().stream()
                 .filter(o -> Objects.equals(o.getDishId(),
                                             orderDto.getDishFindDto().getId()))

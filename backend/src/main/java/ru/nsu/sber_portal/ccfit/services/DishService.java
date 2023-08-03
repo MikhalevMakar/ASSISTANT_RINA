@@ -20,9 +20,8 @@ public class DishService {
 
     private final DishRepository dishRepository;
 
-    public static Dish createDish(@NotNull DishFindDto dishFindDto,
-                                  @NotNull Restaurant restaurant,
-                                  @NotNull DishRepository dishRepository) {
+    public Dish createDish(@NotNull DishFindDto dishFindDto,
+                                  @NotNull Restaurant restaurant) {
         log.info("Create dish");
         return Optional.ofNullable(dishFindDto.getId())
                 .flatMap(dishRepository::findById)
@@ -34,7 +33,7 @@ public class DishService {
     public DishDto getDishDto(String titleRest, @NotNull DishFindDto dishFindDto) {
         log.info("Create dish dto");
         Restaurant restaurant = restaurantService.createRestaurant(titleRest);
-        Dish dish = createDish(dishFindDto, restaurant, dishRepository);
+        Dish dish = createDish(dishFindDto, restaurant);
         return DishMapper.mapperToDto(dish);
     }
 }

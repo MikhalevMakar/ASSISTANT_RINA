@@ -25,7 +25,7 @@ public class Dish extends ContextModel {
     private String description;
 
     @Column(name = "price")
-    private Integer price;
+    private Long price;
 
     @Column(name = "weight")
     private Double weight;

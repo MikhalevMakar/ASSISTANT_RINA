@@ -30,7 +30,6 @@ public class ReviewController {
         log.info("Add new review in rest " + titleRest);
         log.info("Review dto " + reviewDto);
         reviewService.addNewReview(titleRest, reviewDto);
-        ResponseEntity.status(HttpStatus.CREATED).build();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
