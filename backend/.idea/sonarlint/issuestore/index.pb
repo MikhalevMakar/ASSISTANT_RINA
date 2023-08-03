@@ -62,8 +62,6 @@ y
 Isrc/main/java/ru/nsu/sber_portal/ccfit/repositories/ReviewRepository.java,e/2/e2c7244df5c48effe7b920f7d82f53b9c64179de
 v
 Fsrc/main/java/ru/nsu/sber_portal/ccfit/controllers/DishController.java,a/a/aa8425929b28be8515f89370d2ca179fa6f01b5e
-x
-Hsrc/main/java/ru/nsu/sber_portal/ccfit/services/CategoryMenuService.java,5/e/5e3af44ddcda6385a29f3cb3378719761936e2c1
 7
 gradlew,5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9
 :
