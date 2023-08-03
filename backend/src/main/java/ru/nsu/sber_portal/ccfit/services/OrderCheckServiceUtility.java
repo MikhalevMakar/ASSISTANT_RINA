@@ -19,7 +19,7 @@ import static java.util.Optional.ofNullable;
 @Slf4j
 public class OrderCheckServiceUtility {
 
-    protected static final Integer EMPTY_ORDER = 0;
+    protected static final Long EMPTY_ORDER = 0L;
 
     protected static final Long EMPTY_PRICE = 0L;
 

@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import ru.nsu.sber_portal.ccfit.models.ContextModel;
 @Entity
 @Table(name = "category_menu")
+@EqualsAndHashCode(callSuper=false)
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor

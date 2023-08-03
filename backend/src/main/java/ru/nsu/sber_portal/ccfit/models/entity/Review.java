@@ -5,6 +5,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "review")
+@EqualsAndHashCode(callSuper=false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

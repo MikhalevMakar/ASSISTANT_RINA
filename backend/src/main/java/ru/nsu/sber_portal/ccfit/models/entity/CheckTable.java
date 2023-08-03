@@ -10,6 +10,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "check_table")
+@EqualsAndHashCode(callSuper=false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
