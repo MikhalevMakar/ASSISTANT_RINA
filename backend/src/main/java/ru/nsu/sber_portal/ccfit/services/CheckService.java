@@ -51,18 +51,27 @@ public class CheckService extends OrderCheckServiceUtility {
         return checkTableDto;
     }
 
-    @Transactional
     public void checkDeleteOrder(@NotNull Order mainOrder,
                                  @NotNull OrderPattern payedOrderDto) {
 
-        log.info("Call check delete order");
-
+        log.info("Call check delete order " + mainOrder.getId());
         mainOrder.setCount(mainOrder.getCount() - payedOrderDto.getCount());
 
+        log.info("Before CheckDeleteOrder check id " + mainOrder.getCheck().getId() + " size " +  mainOrder.getCheck().getOrders().size());
         if(Objects.equals(mainOrder.getCount(), EMPTY_ORDER))
             orderService.deleteOrder(OrderMapper.mapToDto(mainOrder));
         else
             orderRepository.save(mainOrder);
+
+        Order order = orderService.findOrder(OrderMapper.mapToDto(mainOrder));
+        log.info("After CheckDeleteOrder check id " + order.getCheck().getId() + " size " +  order.getCheck().getOrders().size());
+    }
+
+    private void checkCalculation(@NotNull CheckTable check, @NotNull Set<OrderPattern> orders) {
+        for(var order : orders) {
+            Optional<Dish> dishOptional = dishRepository.findById(order.getDishFindDto().getId());
+            dishOptional.ifPresent(dish -> check.setCost(check.getCost() + dish.getPrice()));
+        }
     }
 
     @Transactional
@@ -72,8 +81,9 @@ public class CheckService extends OrderCheckServiceUtility {
 
         paymentCheckTable.setSessionStatus(SessionStatus.FINALIZED);
         paymentCheckTable.setRestaurant(restaurant);
+        checkCalculation(paymentCheckTable, paymentCheckTableDto.getListOrderDto());
         restaurant.addCheckTable(paymentCheckTable);
-        checkRepository.saveAndFlush(paymentCheckTable);
+        checkRepository.save(paymentCheckTable);
         return paymentCheckTable;
     }
 
@@ -91,10 +101,8 @@ public class CheckService extends OrderCheckServiceUtility {
 
         CheckTable mainCheckTable = createCheckTable(paymentCheckTable.getNumberTable(),
                                                      restaurant);
-        mainCheckTable
-            .setCost(mainCheckTable.getCost() - paymentCheckTable.getCost());
 
-        checkRepository.saveAndFlush(mainCheckTable);
+        checkRepository.save(mainCheckTable);
 
         log.info("Main check table toString(): " + mainCheckTable);
         log.info("Payed check table toString() " + paymentCheckTable);

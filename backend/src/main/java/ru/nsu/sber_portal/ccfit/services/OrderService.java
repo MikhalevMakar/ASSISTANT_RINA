@@ -10,14 +10,13 @@ import ru.nsu.sber_portal.ccfit.models.mappers.OrderMapper;
 import ru.nsu.sber_portal.ccfit.repositories.*;
 
 import javax.transaction.Transactional;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.Optional.ofNullable;
 
 @Service
 @Slf4j
+@Transactional
 public class OrderService extends OrderCheckServiceUtility {
     private final DishService dishService;
 
@@ -35,7 +34,6 @@ public class OrderService extends OrderCheckServiceUtility {
         this.dishService = dishService;
     }
 
-    @Transactional
     public void changeOrder(@NotNull ChangeOrderDto changeOrderDto) {
         log.info("Change order");
         Order order = findOrder(changeOrderDto);
@@ -43,8 +41,8 @@ public class OrderService extends OrderCheckServiceUtility {
         orderRepository.saveAndFlush(order);
     }
 
-    @Transactional
-    public @NotNull Order createOrderByCheck(@NotNull OrderDto orderDto, @NotNull CheckTable checkTable) {
+    public @NotNull Order createOrderByCheck(@NotNull OrderDto orderDto,
+                                             @NotNull CheckTable checkTable) {
         log.info("Create order by check id " + checkTable.getId());
         Dish dish = dishService.createDish(orderDto.getDishFindDto(),
                                            checkTable.getRestaurant());
@@ -62,13 +60,12 @@ public class OrderService extends OrderCheckServiceUtility {
                 order.setDishId(dish.getId());
                 order.setPrice(dish.getPrice() * orderDto.getCount());
                 order.setCheck(checkTable);
-                checkTable.addNewOrder(order);
+                checkTable.getOrders().add(order);
                 checkRepository.save(checkTable);
                 return order;
             });
     }
 
-    @Transactional
     protected Order findOrder(@NotNull OrderPattern deleteOrderDto) {
         return Optional.ofNullable(orderRepository
                         .findByDishIdAndNumberTable(deleteOrderDto.getDishFindDto().getId(),
@@ -77,7 +74,6 @@ public class OrderService extends OrderCheckServiceUtility {
                         .getId() + " wasn't found"));
     }
 
-    @Transactional
     public void deleteOrder(@NotNull OrderPattern deleteOrderDto) {
         Order order = findOrder(deleteOrderDto);
         log.info("Delete order by id " + order.getId());
@@ -87,7 +83,6 @@ public class OrderService extends OrderCheckServiceUtility {
         checkRepository.save(checkTable);
     }
 
-    @Transactional
     public void addNewOrder(@NotNull OrderDto orderDto, String restName) {
         Restaurant restaurant = restaurantService.createRestaurant(restName);
         log.info("Restaurant id {}, Add new order", restaurant.getId());

@@ -2,7 +2,6 @@ package ru.nsu.sber_portal.ccfit.models.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.jetbrains.annotations.NotNull;
 import ru.nsu.sber_portal.ccfit.models.enums.SessionStatus;
 
 import java.time.LocalDateTime;
@@ -24,11 +23,8 @@ public class CheckTable {
     @Column(name = "number_table")
     private Integer numberTable;
 
-    @OneToMany(cascade = { CascadeType.REFRESH,
-                           CascadeType.MERGE,
-                           CascadeType.PERSIST },
-             fetch = FetchType.EAGER, mappedBy = "check",
-             orphanRemoval = true)
+    @OneToMany(cascade = { CascadeType.ALL },
+               fetch = FetchType.EAGER, mappedBy = "check")
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -43,10 +39,6 @@ public class CheckTable {
 
     @Column(name = "date_created")
     private LocalDateTime dateOfCreated;
-
-    public void addNewOrder(@NotNull Order order) {
-        orders.add(order);
-    }
 
     @PrePersist
     private void init() {

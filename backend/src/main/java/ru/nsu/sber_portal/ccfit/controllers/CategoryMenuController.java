@@ -8,8 +8,8 @@ import ru.nsu.sber_portal.ccfit.services.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/backend", produces = "application/json")
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 @RestController
 public class CategoryMenuController {
 

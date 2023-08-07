@@ -16,11 +16,8 @@ public class Order {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(cascade = { CascadeType.REFRESH,
-                           CascadeType.MERGE,
-                           CascadeType.PERSIST },
+    @ManyToOne(cascade = { CascadeType.ALL },
                fetch = FetchType.EAGER)
-
     @JoinColumn(name = "check_table_id")
     private CheckTable check;
 
