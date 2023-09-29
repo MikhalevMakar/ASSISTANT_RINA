@@ -13,7 +13,6 @@ create table category_menu (
     primary key (id)
 );
 
-
 create table check_table (
     number_table integer,
     session_status smallint check (session_status between 0 and 1),
