@@ -3,8 +3,6 @@
 backend/.env,f/3/f30451335edfb80e231f658d0defc83bb7e4c3a7
 J
 backend/docker-compose.yml,a/7/a78d734279d0159f1961e1f3594c47c0a0bda032
-C
-frontend/Dockerfile,8/c/8cbab8791f5ce92942fd63428b3f656f0615a299
 E
 frontend/package.json,3/7/37083060967a471c011a16651e22bdc2ade41759
 9
@@ -33,3 +31,15 @@ u
 Ebackend/src/main/resources/db/migration/V1270723__fill_restaurant.sql,2/c/2c47de93d9858e0f857ab2a278800b385340f688
 r
 Bbackend/src/main/resources/db/migration/V1260723__create_table.sql,b/e/be554aa0d427bebdd964154e7879ad07940d76b8
+~
+Nbackend/src/main/java/ru/nsu/sber_portal/ccfit/models/dto/CategoryMenuDto.java,d/9/d914cd686a987f3cf7909e4b6d37d974876bf341
+u
+Ebackend/src/main/java/ru/nsu/sber_portal/ccfit/models/enums/Role.java,8/7/87acef277b52ee1c242027ce7ae0ede38cbf5807
+~
+Nbackend/src/main/java/ru/nsu/sber_portal/ccfit/models/enums/SessionStatus.java,7/b/7b3ccf594f36de4721e03ed5d05336818851e8fb
+z
+Jbackend/src/main/java/ru/nsu/sber_portal/ccfit/services/ReviewService.java,f/d/fd90d9c1b6b74e90c80ebd7954c84feae2df324a
+x
+Hbackend/src/main/java/ru/nsu/sber_portal/ccfit/services/DishService.java,0/8/08f2bffc5c0129258eef2cf2e8aea4fd33415e8f
+€
+Pbackend/src/main/java/ru/nsu/sber_portal/ccfit/models/dto/CategoryDishesDto.java,5/8/58f32b95ac04fe13e0b9343979cc4ada60a6974a
